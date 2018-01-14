@@ -1,6 +1,5 @@
 #include "OI.h"
-
-#include <WPILib.h>
+#include "WPILib.h"
 
 OI::OI() : leftStick(new Joystick(0)), rightStick(new Joystick(1))
 {
