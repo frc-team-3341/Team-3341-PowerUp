@@ -3,7 +3,7 @@
 #include "../Commands/TankDrive.h"
 
 DriveTrain::DriveTrain() : Subsystem("DriveTrain"), left(new CANTalon(LEFTMOTOR)), right(new CANTalon(RIGHTMOTOR)),
-drivetrain(new RobotDrive(left, right))
+							drivetrain(new RobotDrive(left, right)), encoderLeft(new Encoder(2, 3)), encoderRight(new Encoder(0, 1))
 {
 
 }
@@ -22,6 +22,7 @@ void DriveTrain::tankDrive(Joystick* left, Joystick* right)
 void DriveTrain::arcadeDrive(double moveVal, double rotateVal)
 {
 	drivetrain->Drive(moveVal, rotateVal);
+
 }
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
