@@ -6,14 +6,14 @@
 
 DriveTrain::DriveTrain() : Subsystem("DriveTrain"), left(new CANTalon(LEFTMOTOR)), right(new CANTalon(RIGHTMOTOR)),
 							gyro(new ADXRS450_Gyro()) {
-	/*
+
 	left->SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
 	left->ConfigEncoderCodesPerRev(360);
 	left->SetPosition(0);
 	right->SetFeedbackDevice(CANTalon::CtreMagEncoder_Relative);
 	right->ConfigEncoderCodesPerRev(360);
 	right->SetPosition(0);
-	*/
+
 	gyro->Reset();
 	gyro->Calibrate();
 }
@@ -71,6 +71,16 @@ void DriveTrain::arcadeDrive(double moveVal, double rotateVal) {
 
 double DriveTrain::getAngle() {
 	return gyro->GetAngle();
+}
+
+double DriveTrain::leftDistance() {
+	double relativePosition = (double) left->GetPulseWidthPosition() & 0xFFF;
+	return relativePosition;
+}
+
+double DriveTrain::rightDistance() {
+	double relativePosition = (double) right->GetPulseWidthPosition() & 0xFFF;
+	return relativePosition;
 }
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
