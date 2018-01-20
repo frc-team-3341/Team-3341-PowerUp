@@ -10,12 +10,13 @@
 
 #include "CommandBase.h"
 #include "Commands/TankDrive.h"
+#include "Commands/DriveForward.h"
 
 class Robot: public frc::IterativeRobot {
 public:
 	void RobotInit() override {
 		CommandBase::initialize();
-		chooser.AddDefault("Default Auto", new TankDrive());
+		chooser.AddObject("Default Auto", new DriveForward());
 		// chooser.AddObject("My Auto", new MyAutoCommand());
 		frc::SmartDashboard::PutData("Auto Modes", &chooser);
 	}
@@ -53,7 +54,7 @@ public:
 			autonomousCommand.reset(new ExampleCommand());
 		} */
 
-		autonomousCommand.reset(chooser.GetSelected());
+		autonomousCommand.reset(new DriveForward());
 
 		if (autonomousCommand.get() != nullptr) {
 			autonomousCommand->Start();
@@ -62,6 +63,7 @@ public:
 
 	void AutonomousPeriodic() override {
 		frc::Scheduler::GetInstance()->Run();
+
 	}
 
 	void TeleopInit() override {

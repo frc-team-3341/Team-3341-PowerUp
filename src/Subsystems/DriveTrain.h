@@ -9,16 +9,18 @@ class DriveTrain : public Subsystem {
 private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
-	CANTalon* right;
 	CANTalon* left;
-	RobotDrive* drivetrain;
-
-
+	CANTalon* right;
+	ADXRS450_Gyro* gyro;
 public:
 	DriveTrain();
 	void InitDefaultCommand();
-	void tankDrive(Joystick* left, Joystick* right);
+	double Limit(double num, double max);
+	void tankDrive(double leftVal, double rightVal);
 	void arcadeDrive(double moveVal, double rotateVal);
+	double getAngle();
+	double leftDistance();
+	double rightDistance();
 };
 
 #endif  // DriveTrain_H
