@@ -2,10 +2,16 @@
 #define DriveForward_H
 
 #include "../CommandBase.h"
+#include "Utilities/WVPIDController.h"
 
 class DriveForward : public CommandBase {
+private:
+	double kP = 0.5;
+	double kI = 0;
+	double kD = 0;
+	WVPIDController* pid;
 public:
-	DriveForward();
+	DriveForward(double setpoint);
 	void Initialize();
 	void Execute();
 	bool IsFinished();

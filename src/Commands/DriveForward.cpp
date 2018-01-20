@@ -1,6 +1,6 @@
 #include "DriveForward.h"
 
-DriveForward::DriveForward() {
+DriveForward::DriveForward(double setpoint) : pid(new WVPIDController(kP, kI, kD, setpoint, false)) {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
 	Requires(drive);
@@ -13,7 +13,8 @@ void DriveForward::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void DriveForward::Execute() {
-	drive->arcadeDrive(-0.2, 0.0);
+
+	drive->arcadeDrive(pid->Tick((drive->leftDistance() + drive->rightDistance()) / 2), 0);
 	std::cout << "Value: " << std::endl;
 }
 
