@@ -11,14 +11,14 @@ private:
 	// for methods that implement subsystem capabilities
 	CANTalon* left;
 	CANTalon* right;
-	RobotDrive* drivetrain;
-	Encoder* encoderLeft;
-	Encoder* encoderRight;
+	ADXRS450_Gyro* gyro;
 public:
 	DriveTrain();
 	void InitDefaultCommand();
-	void tankDrive(Joystick* left, Joystick* right);
+	double Limit(double num, double max);
+	void tankDrive(double leftVal, double rightVal);
 	void arcadeDrive(double moveVal, double rotateVal);
+	double getAngle();
 };
 
 #endif  // DriveTrain_H
