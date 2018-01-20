@@ -1,7 +1,8 @@
 #include "Lift.h"
 #include "../RobotMap.h"
 
-Lift::Lift() : Subsystem("Lift"), motor(new CANTalon(LIFT_MOTOR)) {
+Lift::Lift() : Subsystem("Lift"),
+motor(new CANTalon(LIFT_MOTOR)) {
 
 }
 
@@ -15,9 +16,9 @@ void Lift::InitDefaultCommand() {
 	// SetDefaultCommand(new MySpecialCommand());
 }
 
-void Lift::move(double power)
+void Lift::move(double speed)
 {
-	motor->Set(power);
+	motor->Set(speed);
 	// TODO: may need mapping
 }
 
@@ -29,4 +30,9 @@ double Lift::getHeight()
 double Lift::getVelocity()
 {
 	return motor->GetEncVel();
+}
+
+CANTalon* Lift::getMotor()
+{
+	return motor;
 }
