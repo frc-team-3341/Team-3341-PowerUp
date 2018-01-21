@@ -24,10 +24,10 @@ private:
 	double Kd;
 	double setPoint;
 	bool integralThreshold;
+	double lastPWM;
 	double error;
 	double previousError;
 	double integral;
-	double lastPWM;
 };
 
 #endif
