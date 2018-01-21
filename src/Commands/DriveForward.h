@@ -9,9 +9,11 @@ private:
 	double kP = 0.5;
 	double kI = 0;
 	double kD = 0;
+	double setpoint;
+	double average = 0;
 	WVPIDController* pid;
 public:
-	DriveForward(double setpoint);
+	DriveForward(double _setpoint);
 	void Initialize();
 	void Execute();
 	bool IsFinished();
