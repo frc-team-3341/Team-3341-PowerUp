@@ -15,7 +15,8 @@ void TankDrive::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void TankDrive::Execute() {
-	drive->tankDrive(oi->getLeftStick()->GetY(), oi->getRightStick()->GetY());
+	drive->tankDrive(-oi->getLeftStick()->GetY(), -oi->getRightStick()->GetY());
+	//std::cout << drive->getAngle() << std::endl;
 }
 
 // Make this return true when this Command no longer needs to run execute()
