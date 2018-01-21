@@ -14,6 +14,7 @@ DriveTrain::DriveTrain() : Subsystem("DriveTrain"), left(new CANTalon(LEFTMOTOR)
 	right->ConfigEncoderCodesPerRev(360);
 	right->SetPosition(0);
 
+	right->SetInverted(true);
 	gyro->Reset();
 	gyro->Calibrate();
 }
@@ -41,11 +42,11 @@ void DriveTrain::tankDrive(double leftVal, double rightVal) {
 
 void DriveTrain::arcadeDrive(double moveVal, double rotateVal) {
 	double leftMotorOutput, rightMotorOutput;
-	/*
+
 	CANTalon::FeedbackDeviceStatus sensorStatus = left->IsSensorPresent(CANTalon::CtreMagEncoder_Relative);
-	CANTalon::FeedbackDeviceStatus sensorStatus = right->IsSensorPresent(CANTalon::CtreMagEncoder_Relative);
-	*/
-	std::cout << "Left, Right: " << left << "   " << right << std::endl;
+	CANTalon::FeedbackDeviceStatus sensorStatus2 = right->IsSensorPresent(CANTalon::CtreMagEncoder_Relative);
+
+	std::cout << "Left, Right: " << sensorStatus << "   " << sensorStatus2 << std::endl;
 	// Standard ArcadeDriveTrain algorithm from Google
 	if (moveVal > 0.0) {
 		if (rotateVal > 0.0) {
@@ -65,21 +66,35 @@ void DriveTrain::arcadeDrive(double moveVal, double rotateVal) {
 		}
 	}
 
-	left->Set(leftMotorOutput);
-	right->Set(rightMotorOutput);
+	left->Set(DriveTrain::Limit(leftMotorOutput, 0.5));
+	right->Set(DriveTrain::Limit(rightMotorOutput, 0.5));
 }
 
 double DriveTrain::getAngle() {
-	return gyro->GetAngle();
+	double angle = gyro->GetAngle();
+	//-180 to 180
+	while (angle > 180) {
+		angle -= 360;
+	}
+	while (angle < -180) {
+		angle += 360;
+	}
+	return angle;
 }
 
-double DriveTrain::leftDistance() {
-	double relativePosition = (double) left->GetPulseWidthPosition() & 0xFFF;
+void DriveTrain::gyroReset() {
+	gyro->Reset();
+}
+
+double DriveTrain::leftDistance() { //inches
+	double relativePosition = (double) (left->GetPulseWidthPosition() & 0xFFF);
+	relativePosition = relativePosition * circumference / 360;
 	return relativePosition;
 }
 
-double DriveTrain::rightDistance() {
-	double relativePosition = (double) right->GetPulseWidthPosition() & 0xFFF;
+double DriveTrain::rightDistance() { //inches
+	double relativePosition = (double) (right->GetPulseWidthPosition() & 0xFFF);
+	relativePosition = relativePosition * circumference / 360;
 	return relativePosition;
 }
 // Put methods for controlling this subsystem

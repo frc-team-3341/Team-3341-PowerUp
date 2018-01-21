@@ -5,6 +5,8 @@
 #include "WPILib.h"
 #include "ctrlib/CANTalon.h"
 
+#include "math.h"
+
 class DriveTrain : public Subsystem {
 private:
 	// It's desirable that everything possible under private except
@@ -12,6 +14,7 @@ private:
 	CANTalon* left;
 	CANTalon* right;
 	ADXRS450_Gyro* gyro;
+	double circumference = 6 * M_PI; //diameter = 6 inches
 public:
 	DriveTrain();
 	void InitDefaultCommand();
@@ -19,8 +22,9 @@ public:
 	void tankDrive(double leftVal, double rightVal);
 	void arcadeDrive(double moveVal, double rotateVal);
 	double getAngle();
-	double leftDistance();
-	double rightDistance();
+	void gyroReset();
+	double leftDistance(); //inches
+	double rightDistance(); //inches
 };
 
 #endif  // DriveTrain_H
