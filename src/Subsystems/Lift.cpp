@@ -2,8 +2,12 @@
 #include "../RobotMap.h"
 
 Lift::Lift() : Subsystem("Lift"),
-motor(new CANTalon(LIFT_MOTOR)) {
-
+motor(new CANTalon(LIFT_MOTOR)),
+circumference(5)
+{
+	motor->SetFeedbackDevice(CANTalon::CtreMagEncoder_Absolute);
+	motor->ConfigEncoderCodesPerRev(360);
+	motor->SetPosition(0);
 }
 
 Lift::~Lift()
@@ -12,13 +16,12 @@ Lift::~Lift()
 }
 
 void Lift::InitDefaultCommand() {
-	// Set the default command for a subsystem here.
-	// SetDefaultCommand(new MySpecialCommand());
+	SetDefaultCommand(new MoveLift());
 }
 
 void Lift::move(double speed)
 {
-	motor->Set(speed);
+	motor->Set(Lift::Limit(speed, 0.5));
 	// TODO: may need mapping
 }
 
@@ -35,4 +38,19 @@ double Lift::getVelocity()
 CANTalon* Lift::getMotor()
 {
 	return motor;
+}
+
+float Lift::Limit(float num, float max) {
+	if (num > max)
+		return max;
+	if (num < -max)
+		return -max;
+
+	return num;
+}
+
+double Lift::liftDistance() { //inches
+	double absolutePosition = (double) (motor->GetPulseWidthPosition() & 0xFFF);
+	absolutePosition = absolutePosition * circumference / 360;
+	return absolutePosition;
 }

@@ -5,10 +5,10 @@
 
 class MoveLift : public CommandBase {
 private:
-	double liftHeight;
+	double liftVal;
 
 public:
-	MoveLift(double height);
+	MoveLift();
 	void Initialize();
 	void Execute();
 	bool IsFinished();

@@ -2,7 +2,9 @@
 
 #include <WPILib.h>
 
-OI::OI() : leftStick(new Joystick(0)), rightStick(new Joystick(1))
+OI::OI() : leftStick(new Joystick(LEFTMOTOR)),
+rightStick(new Joystick(RIGHTMOTOR)),
+liftStick(new Joystick(LIFT_MOTOR))
 {
 	// Process operator interface input here.
 }
@@ -15,4 +17,9 @@ Joystick* OI::getLeftStick()
 Joystick* OI::getRightStick()
 {
 	return rightStick;
+}
+
+Joystick* OI::getLiftStick()
+{
+	return liftStick;
 }

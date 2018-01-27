@@ -2,7 +2,9 @@
 #include "../RobotMap.h"
 #include "../Commands/TankDrive.h"
 
-DriveTrain::DriveTrain() : Subsystem("DriveTrain"), left(new CANTalon(LEFTMOTOR)), right(new CANTalon(RIGHTMOTOR)),
+DriveTrain::DriveTrain() : Subsystem("DriveTrain"),
+left(new CANTalon(LEFTMOTOR)),
+right(new CANTalon(RIGHTMOTOR)),
 drivetrain(new RobotDrive(left, right))
 {
 
