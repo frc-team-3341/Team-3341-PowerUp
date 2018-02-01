@@ -3,7 +3,7 @@
 
 #include <Commands/Subsystem.h>
 #include "WPILib.h"
-#include "ctrlib/CANTalon.h"
+#include "ctre/Phoenix.h"
 
 #include "math.h"
 
@@ -11,8 +11,8 @@ class DriveTrain : public Subsystem {
 private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
-	CANTalon* left;
-	CANTalon* right;
+	TalonSRX* left;
+	TalonSRX* right;
 	ADXRS450_Gyro* gyro;
 	double circumference = 6 * M_PI; //diameter = 6 inches
 public:

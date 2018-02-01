@@ -6,9 +6,9 @@
 
 class Turn : public CommandBase {
 private:
-	double kP = 0.5;
+	double kP = 4.71;
 	double kI = 0.0;
-	double kD = 0.05;
+	double kD = 0.0;
 	double setpoint;
 	double angle = 0;
 	WVPIDController* pid;

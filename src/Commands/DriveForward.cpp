@@ -1,4 +1,6 @@
 #include "DriveForward.h"
+#include "iostream"
+using namespace std;
 
 DriveForward::DriveForward(double _setpoint) : setpoint(_setpoint), pid(new WVPIDController(kP, kI, kD, setpoint, false)) {
 	// Use Requires() here to declare subsystem dependencies
