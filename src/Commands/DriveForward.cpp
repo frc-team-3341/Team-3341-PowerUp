@@ -1,38 +1,37 @@
-#include "TankDrive.h"
+#include "DriveForward.h"
+#include "iostream"
+using namespace std;
 
-TankDrive::TankDrive()
-{
+DriveForward::DriveForward(double _setpoint) : setpoint(_setpoint), pid(new WVPIDController(kP, kI, kD, setpoint, false)) {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
 	Requires(drive);
-
 }
 
 // Called just before this Command runs the first time
-void TankDrive::Initialize() {
+void DriveForward::Initialize() {
 
 }
 
 // Called repeatedly when this Command is scheduled to run
-
-void TankDrive::Execute() {
-	drive->tankDrive(-oi->getLeftStick()->GetY(), -oi->getRightStick()->GetY());
+void DriveForward::Execute() {
 	double average = (drive->leftDistance() + drive->rightDistance()) / 2;
-	//std::cout << drive->getAngle() << std::endl;
+	// drive->arcadeDrive(pid->Tick(average), 0);
+	// std::cout << "Value: " << std::endl;
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool TankDrive::IsFinished() {
-	return false;
+bool DriveForward::IsFinished() {
+	return fabs(average - setpoint) < 0.05;
 }
 
 // Called once after isFinished returns true
-void TankDrive::End() {
-
+void DriveForward::End() {
+	drive->arcadeDrive(0, 0);
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void TankDrive::Interrupted() {
+void DriveForward::Interrupted() {
 
 }
