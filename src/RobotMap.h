@@ -10,7 +10,7 @@
 
 // For example to map the left and right motors, you could define the
 // following variables to use with your drivetrain subsystem.
-constexpr int LEFTMOTOR = 1;
+constexpr int LEFTMOTOR = 3;
 constexpr int RIGHTMOTOR = 2;
 
 // If you are using multiple modules, make sure to define both the port

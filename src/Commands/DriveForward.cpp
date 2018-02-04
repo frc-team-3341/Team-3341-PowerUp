@@ -16,8 +16,8 @@ void DriveForward::Initialize() {
 // Called repeatedly when this Command is scheduled to run
 void DriveForward::Execute() {
 	double average = (drive->leftDistance() + drive->rightDistance()) / 2;
-	drive->arcadeDrive(pid->Tick(average), 0);
-	std::cout << "Value: " << std::endl;
+	// drive->arcadeDrive(pid->Tick(average), 0);
+	// std::cout << "Value: " << std::endl;
 }
 
 // Make this return true when this Command no longer needs to run execute()

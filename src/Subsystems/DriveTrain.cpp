@@ -18,6 +18,7 @@ DriveTrain::DriveTrain() : Subsystem("DriveTrain"), left(new TalonSRX(LEFTMOTOR)
 
 	std::cout<<"DriveTrain Constructor Successful" <<std::endl;
 	right->SetInverted(true);
+
 	gyro->Reset();
 	gyro->Calibrate();
 
@@ -41,8 +42,8 @@ double DriveTrain::Limit(double num, double max) {
 }
 
 void DriveTrain::tankDrive(double leftVal, double rightVal) {
-	left->Set(ControlMode::PercentOutput, DriveTrain::Limit(leftVal, 0.5));
-	right->Set(ControlMode::PercentOutput, DriveTrain::Limit(rightVal, 0.5));
+	left->Set(ControlMode::PercentOutput, DriveTrain::Limit(-leftVal, 0.5));
+	right->Set(ControlMode::PercentOutput, DriveTrain::Limit(-rightVal, 0.5));
 }
 
 void DriveTrain::arcadeDrive(double moveVal, double rotateVal) {
@@ -93,16 +94,18 @@ void DriveTrain::gyroReset() {
 }
 
 double DriveTrain::leftDistance() { //inches
-	double relativePosition = (double) (left->GetSensorCollection().GetPulseWidthPosition() & 0xFFF);
-	relativePosition = relativePosition * circumference / 360;
+	// double test = (double) (left->GetSensorCollection().GetPulseWidthPosition()); This also works, but I don't know what is different
+	double relativePosition = left->GetSensorCollection().GetQuadraturePosition(); // Return ticks
+	relativePosition = (relativePosition / 4096) * circumference; // 4096 ticks per revolution
 	std::cout<< "Left Wheel Relative Position: " << relativePosition << std::endl;
 	return relativePosition;
 }
 
 double DriveTrain::rightDistance() { //inches
 
-	double relativePosition = (double) (right->GetSensorCollection().GetPulseWidthPosition() & 0xFFF);
-	relativePosition = relativePosition * circumference / 360;
+	// double relativePosition = (double) (right->GetSensorCollection().GetPulseWidthPosition()); This also works, but I don't know what is different
+	double relativePosition = -(right->GetSensorCollection().GetQuadraturePosition()); // Negative sign makes sure that forwards is positive and backwards is negative
+	//relativePosition = relativePosition * circumference / 360;
 	std::cout<< "Right Wheel Relative Position: " << relativePosition << std::endl;
 	return relativePosition;
 
