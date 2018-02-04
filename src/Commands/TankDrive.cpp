@@ -14,6 +14,7 @@ void TankDrive::Initialize() {
 }
 
 // Called repeatedly when this Command is scheduled to run
+
 void TankDrive::Execute() {
 	drive->tankDrive(-oi->getLeftStick()->GetY(), -oi->getRightStick()->GetY());
 	double average = (drive->leftDistance() + drive->rightDistance()) / 2;

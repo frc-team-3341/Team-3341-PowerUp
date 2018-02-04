@@ -17,8 +17,10 @@ class Robot: public frc::IterativeRobot {
 public:
 	void RobotInit() override {
 		CommandBase::initialize();
+
 		std::cout<<"RobotInit Successful"<< std::endl;
 		chooser.AddDefault("Default Auto", new DriveForward(10));
+
 		// chooser.AddObject("My Auto", new MyAutoCommand());
 		frc::SmartDashboard::PutData("Auto Modes", &chooser);
 	}
@@ -55,10 +57,12 @@ public:
 		else {
 			autonomousCommand.reset(new ExampleCommand());
 		} */
+
 		std::cout<<"AutonomousInit Successful" <<std::endl;
 		if (autonomousCommand.get() != nullptr) {
 			autonomousCommand.reset(chooser.GetSelected());
 		}
+
 
 		if (autonomousCommand.get() != nullptr) {
 			autonomousCommand->Start();
@@ -67,7 +71,6 @@ public:
 
 	void AutonomousPeriodic() override {
 		frc::Scheduler::GetInstance()->Run();
-
 	}
 
 	void TeleopInit() override {

@@ -22,6 +22,7 @@ DriveTrain::DriveTrain() : Subsystem("DriveTrain"), left(new TalonSRX(LEFTMOTOR)
 	gyro->Reset();
 	gyro->Calibrate();
 
+
 }
 
 void DriveTrain::InitDefaultCommand() {
@@ -30,6 +31,7 @@ void DriveTrain::InitDefaultCommand() {
 	std::cout<<"DriveTrain InitDefaultCommand Successful" <<std::endl;
 	SetDefaultCommand(new TankDrive());
 }
+
 
 double DriveTrain::Limit(double num, double max) {
 	if (num > max)
@@ -108,6 +110,7 @@ double DriveTrain::rightDistance() { //inches
 	//relativePosition = relativePosition * circumference / 360;
 	std::cout<< "Right Wheel Relative Position: " << relativePosition << std::endl;
 	return relativePosition;
+
 
 }
 // Put methods for controlling this subsystem
