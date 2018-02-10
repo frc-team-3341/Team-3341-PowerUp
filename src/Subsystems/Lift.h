@@ -2,25 +2,29 @@
 #define Lift_H
 
 #include <Commands/Subsystem.h>
-#include "ctrlib/CANTalon.h"
+#include "ctre/Phoenix.h"
 #include "RobotMap.h"
-#include "../Commands/MoveLift.h"
+
+#include <WPILib.h>
 
 class Lift : public Subsystem {
 private:
-	CANTalon* motor;
-	double circumference;
+	TalonSRX* motor;
+	double ticksPerDistance;
+	double liftHeight;
 
 public:
 	Lift();
 	~Lift();
 	void InitDefaultCommand();
 	void move(double speed);
-	double getHeight();
-	double getVelocity();
-	CANTalon* getMotor();
+	TalonSRX* getMotor();
 	float Limit(float num, float max);
 	double liftDistance();
+	void setHeight(double height);
+	double getHeight();
+	void resetEncoder();
+	void RobotSetClosedPositionLoop(TalonSRX* talon);
 };
 
 #endif  // Lift_H

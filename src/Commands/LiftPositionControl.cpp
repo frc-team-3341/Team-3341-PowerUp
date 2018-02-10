@@ -1,37 +1,33 @@
-#include "TankDrive.h"
+#include "LiftPositionControl.h"
 
-TankDrive::TankDrive()
-{
+LiftPositionControl::LiftPositionControl() {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
-	Requires(drive);
-
+	Requires(lift);
 }
 
 // Called just before this Command runs the first time
-void TankDrive::Initialize() {
-
+void LiftPositionControl::Initialize() {
+	lift->RobotSetClosedPositionLoop(lift->getMotor());
 }
 
 // Called repeatedly when this Command is scheduled to run
-void TankDrive::Execute()
-{
-	drive->tankDrive(oi->getLeftStick(), oi->getRightStick());
-	double average = (drive->leftDistance() + drive->rightDistance()) / 2;
+void LiftPositionControl::Execute() {
+
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool TankDrive::IsFinished() {
+bool LiftPositionControl::IsFinished() {
 	return false;
 }
 
 // Called once after isFinished returns true
-void TankDrive::End() {
+void LiftPositionControl::End() {
 
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void TankDrive::Interrupted() {
+void LiftPositionControl::Interrupted() {
 
 }

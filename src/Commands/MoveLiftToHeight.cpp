@@ -22,11 +22,12 @@ void MoveLiftToHeight::Execute()
 // Make this return true when this Command no longer needs to run execute()
 bool MoveLiftToHeight::IsFinished() {
 	return fabs(lift->getHeight() - targetHeight) < 0.05;
+	//return fabs(heightPid->GetError()) < 0.05;
 }
 
 // Called once after isFinished returns true
 void MoveLiftToHeight::End() {
-	lift->getMotor()->Set(0);
+	lift->getMotor()->Set(ControlMode::PercentOutput, 0);
 }
 
 // Called when another command which requires one or more of the same

@@ -1,6 +1,7 @@
 #include "MoveLift.h"
 
-MoveLift::MoveLift() : liftVal(0) {
+MoveLift::MoveLift() : liftVal(0)
+{
 	Requires(lift);
 }
 
@@ -13,7 +14,7 @@ void MoveLift::Initialize() {
 void MoveLift::Execute() {
 	liftVal = oi->getLiftStick()->GetY();
 	//TODO: Add limit function for the actual mechanism but it is omitted for testing
-	lift->move(liftVal * 0.1);
+	lift->move(liftVal);
 }
 
 // Make this return true when this Command no longer needs to run execute()
@@ -31,3 +32,4 @@ void MoveLift::End() {
 void MoveLift::Interrupted() {
 
 }
+

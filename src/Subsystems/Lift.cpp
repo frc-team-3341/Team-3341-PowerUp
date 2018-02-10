@@ -1,13 +1,14 @@
 #include "Lift.h"
 #include "../RobotMap.h"
+#include "../Commands/MoveLift.h"
+#include <iostream>
 
 Lift::Lift() : Subsystem("Lift"),
-motor(new CANTalon(LIFT_MOTOR)),
-circumference(5)
+motor(new TalonSRX(LIFT_MOTOR)),
+ticksPerDistance(4096),
+liftHeight(0)
 {
-	motor->SetFeedbackDevice(CANTalon::CtreMagEncoder_Absolute);
-	motor->ConfigEncoderCodesPerRev(360);
-	motor->SetPosition(0);
+	motor->ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Relative,0,10);
 }
 
 Lift::~Lift()
@@ -21,21 +22,12 @@ void Lift::InitDefaultCommand() {
 
 void Lift::move(double speed)
 {
-	motor->Set(Lift::Limit(speed, 0.5));
-	// TODO: may need mapping
+	liftHeight += Lift::liftDistance();
+	SmartDashboard::PutNumber("liftHeight",liftHeight);
+	motor->Set(ControlMode::PercentOutput,Lift::Limit(speed, 0.5));
 }
 
-double Lift::getHeight()
-{
-	return motor->GetEncPosition();
-}
-
-double Lift::getVelocity()
-{
-	return motor->GetEncVel();
-}
-
-CANTalon* Lift::getMotor()
+TalonSRX* Lift::getMotor()
 {
 	return motor;
 }
@@ -50,7 +42,66 @@ float Lift::Limit(float num, float max) {
 }
 
 double Lift::liftDistance() { //inches
-	double absolutePosition = (double) (motor->GetPulseWidthPosition() & 0xFFF);
-	absolutePosition = absolutePosition * circumference / 360;
-	return absolutePosition;
+	double relativePosition = motor->GetSensorCollection().GetQuadraturePosition(); // Return ticks
+	double revolutions = relativePosition/4096;
+	double distance = (relativePosition / ticksPerDistance); // 4096 ticks per revolution
+	std::cout<< "Lift Relative Position: " << relativePosition << std::endl;
+	return distance;
+
+}
+
+void Lift::setHeight(double height)
+{
+	liftHeight = height;
+}
+
+double Lift::getHeight()
+{
+	return liftHeight;
+}
+
+void Lift::resetEncoder()
+{
+	motor->SetSelectedSensorPosition(0,0,10);
+}
+
+void Lift::RobotSetClosedPositionLoop(TalonSRX* talon) {
+	/* lets grab the 360 degree position of the MagEncoder's absolute position */
+	int absolutePosition = talon->GetSensorCollection().GetPulseWidthPosition() & 0xFFF; /* mask out the bottom12 bits, we don't care about the wrap arounds */
+	/* use the low level API to set the quad encoder signal */
+	//_talon->SetEncPosition(absolutePosition);
+
+	/* choose the sensor and sensor direction */
+	talon->ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Absolute,0,10);
+	talon->SetSensorPhase(true);
+	talon->SetInverted(false);
+	//TODO: replace this? talon->SetSensorDirection(true);
+
+	/* set the peak and nominal outputs, 12V means full */
+	//talon->ConfigNominalOutputVoltage(+0., -0.);
+	//talon->ConfigPeakOutputVoltage(+12., -12.);
+	talon->ConfigPeakCurrentLimit(35,10);
+	talon->ConfigPeakCurrentDuration(200,10);
+	talon->ConfigContinuousCurrentLimit(30,10);
+	talon->EnableCurrentLimit(true);
+	//TODO: test
+	/* set the allowable closed-loop error,
+	 * Closed-Loop output will be neutral within this range.
+	 * See Table in Section 17.2.1 for native units per rotation.
+	 */
+	//talon->SetAllowableClosedLoopErr(0); /* always servo */
+	/* set closed loop gains in slot0 */
+	//talon->SelectProfileSlot(0);
+	talon->SelectProfileSlot(0,0);
+	talon->Config_kF(0,0,200);
+	talon->Config_kP(0,1,200);
+	talon->Config_kI(0,0,200);
+	talon->Config_kD(0,0,200);
+
+	//targetPositionRotations = absolutePosition;
+	//talon->SetPosition(0.0);
+	talon->SetSelectedSensorPosition(0,0,200);
+	talon->Set(ControlMode::Position,absolutePosition);
+	//talon->SetControlMode(CANSpeedController::kPosition);
+	//talon->Set(0.0); /* 50 rotations in either direction */
 }

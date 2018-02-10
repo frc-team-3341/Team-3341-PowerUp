@@ -8,6 +8,8 @@ private:
 	Joystick* leftStick;
 	Joystick* rightStick;
 	Joystick* liftStick;
+	Button* testButton;
+	Button* liftPidButton;
 
 public:
 	OI();

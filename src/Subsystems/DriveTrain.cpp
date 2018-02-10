@@ -1,11 +1,13 @@
 #include "DriveTrain.h"
 #include "../RobotMap.h"
 #include "../Commands/TankDrive.h"
+#include "iostream"
+using namespace std;
 
 DriveTrain::DriveTrain() : Subsystem("DriveTrain"),
-left(new CANTalon(LEFTMOTOR)),
-right(new CANTalon(RIGHTMOTOR)),
-drivetrain(new RobotDrive(left, right))
+left(new TalonSRX(LEFTMOTOR)),
+right(new TalonSRX(RIGHTMOTOR)),
+drivetrain(new RobotDrive(LEFTMOTOR, RIGHTMOTOR))
 {
 
 }
@@ -25,5 +27,17 @@ void DriveTrain::arcadeDrive(double moveVal, double rotateVal)
 {
 	drivetrain->Drive(moveVal, rotateVal);
 }
-// Put methods for controlling this subsystem
-// here. Call these from Commands.
+
+double DriveTrain::leftDistance()
+{
+	double relativePosition = (left->GetSensorCollection().GetQuadraturePosition());
+	relativePosition = (relativePosition / 4096) * circumference;
+	std::cout << "Left Wheel Relative Position: " << relativePosition << std::endl;
+}
+
+double DriveTrain::rightDistance()
+{
+	double relativePosition = -(right->GetSensorCollection().GetQuadraturePosition());
+	relativePosition = (relativePosition / 4096) * circumference;
+	std::cout << "Right Wheel Relative Position: " << relativePosition << std::endl;
+}
