@@ -6,16 +6,24 @@
 #include <LiveWindow/LiveWindow.h>
 #include <SmartDashboard/SendableChooser.h>
 #include <SmartDashboard/SmartDashboard.h>
+#include "iostream"
 
+
+using namespace std;
 
 #include "CommandBase.h"
 #include "Commands/TankDrive.h"
+#include //"Commands/DriveForward.h"
+#include //"Commands/Turn.h"
 
 class Robot: public frc::IterativeRobot {
 public:
 	void RobotInit() override {
 		CommandBase::initialize();
-		chooser.AddDefault("Default Auto", new TankDrive());
+
+		std::cout<<"RobotInit Successful"<< std::endl;
+		chooser.AddDefault("Default Auto", new DriveForward(10));
+
 		// chooser.AddObject("My Auto", new MyAutoCommand());
 		frc::SmartDashboard::PutData("Auto Modes", &chooser);
 	}
@@ -53,7 +61,11 @@ public:
 			autonomousCommand.reset(new ExampleCommand());
 		} */
 
-		autonomousCommand.reset(chooser.GetSelected());
+		std::cout<<"AutonomousInit Successful" <<std::endl;
+		if (autonomousCommand.get() != nullptr) {
+			autonomousCommand.reset(chooser.GetSelected());
+		}
+
 
 		if (autonomousCommand.get() != nullptr) {
 			autonomousCommand->Start();

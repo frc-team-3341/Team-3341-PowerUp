@@ -10,6 +10,7 @@
 
 std::unique_ptr<OI> CommandBase::oi;
 DriveTrain* CommandBase::drive = nullptr;
+Catcher* CommandBase::catcher = nullptr;
 
 CommandBase::CommandBase(const std::string &name) :
 		frc::Command(name) {
@@ -18,6 +19,7 @@ CommandBase::CommandBase(const std::string &name) :
 
 void CommandBase::initialize()
 {
-	oi = std::make_unique<OI>();
+	oi = std::unique_ptr<OI> oi();
 	drive = new DriveTrain();
+	catcher = new Catcher();
 }
