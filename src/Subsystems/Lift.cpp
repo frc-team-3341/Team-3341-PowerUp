@@ -45,7 +45,7 @@ double Lift::liftDistance() { //inches
 	double relativePosition = motor->GetSensorCollection().GetQuadraturePosition(); // Return ticks
 	double revolutions = relativePosition/4096;
 	double distance = (relativePosition / ticksPerDistance); // 4096 ticks per revolution
-	std::cout<< "Lift Relative Position: " << relativePosition << std::endl;
+	//std::cout<< "Lift Relative Position: " << relativePosition << std::endl;
 	return distance;
 
 }
@@ -66,6 +66,8 @@ void Lift::resetEncoder()
 }
 
 void Lift::RobotSetClosedPositionLoop(TalonSRX* talon) {
+	std::cout << "Start of ClosedPositionLoop" << std::endl;
+
 	/* lets grab the 360 degree position of the MagEncoder's absolute position */
 	int absolutePosition = talon->GetSensorCollection().GetPulseWidthPosition() & 0xFFF; /* mask out the bottom12 bits, we don't care about the wrap arounds */
 	/* use the low level API to set the quad encoder signal */
@@ -104,4 +106,11 @@ void Lift::RobotSetClosedPositionLoop(TalonSRX* talon) {
 	talon->Set(ControlMode::Position,absolutePosition);
 	//talon->SetControlMode(CANSpeedController::kPosition);
 	//talon->Set(0.0); /* 50 rotations in either direction */
+
+	std::cout << "error:" << std::endl;
+}
+
+double Lift::getPosition()
+{
+	return motor->GetSensorCollection().GetQuadraturePosition();
 }

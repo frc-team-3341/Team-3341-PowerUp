@@ -32,12 +32,12 @@ double DriveTrain::leftDistance()
 {
 	double relativePosition = (left->GetSensorCollection().GetQuadraturePosition());
 	relativePosition = (relativePosition / 4096) * circumference;
-	std::cout << "Left Wheel Relative Position: " << relativePosition << std::endl;
+	//std::cout << "Left Wheel Relative Position: " << relativePosition << std::endl;
 }
 
 double DriveTrain::rightDistance()
 {
 	double relativePosition = -(right->GetSensorCollection().GetQuadraturePosition());
 	relativePosition = (relativePosition / 4096) * circumference;
-	std::cout << "Right Wheel Relative Position: " << relativePosition << std::endl;
+	//std::cout << "Right Wheel Relative Position: " << relativePosition << std::endl;
 }

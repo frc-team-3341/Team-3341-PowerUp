@@ -3,15 +3,16 @@
 #include <WPILib.h>
 #include "Commands/MoveLiftToHeight.h"
 #include "Commands/LiftPositionControl.h"
+#include "Commands/MoveLiftToMinHeight.h"
 
 OI::OI() : leftStick(new Joystick(0)),
 rightStick(new Joystick(1)),
 liftStick(new Joystick(2))
 {
-	testButton = new JoystickButton(liftStick,2);
-	liftPidButton = new JoystickButton(liftStick,1);
+	testButton = new JoystickButton(liftStick,1);
+	calibrateLift = new JoystickButton(liftStick,3);
 	testButton->WhenPressed(new MoveLiftToHeight(4));
-	liftPidButton->WhenPressed(new LiftPositionControl());
+	calibrateLift->WhenPressed(new MoveLiftToMinHeight());
 }
 
 Joystick* OI::getLeftStick()

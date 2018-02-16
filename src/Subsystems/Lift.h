@@ -6,6 +6,7 @@
 #include "RobotMap.h"
 
 #include <WPILib.h>
+#include "Utilities/WVPIDController.h"
 
 class Lift : public Subsystem {
 private:
@@ -25,6 +26,9 @@ public:
 	double getHeight();
 	void resetEncoder();
 	void RobotSetClosedPositionLoop(TalonSRX* talon);
+	WVPIDController* getHeightPid();
+	WVPIDController* getLiftPositionPid();
+	double getPosition();
 };
 
 #endif  // Lift_H

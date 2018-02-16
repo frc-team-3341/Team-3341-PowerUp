@@ -9,7 +9,7 @@ private:
 	Joystick* rightStick;
 	Joystick* liftStick;
 	Button* testButton;
-	Button* liftPidButton;
+	Button* calibrateLift;
 
 public:
 	OI();

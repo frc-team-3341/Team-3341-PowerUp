@@ -1,4 +1,5 @@
 #include "CommandBase.h"
+#include <iostream>
 
 #include <Commands/Scheduler.h>
 
@@ -8,9 +9,9 @@
 // line should be repeated for each subsystem in the project.
 
 
-std::unique_ptr<OI> CommandBase::oi;
 DriveTrain* CommandBase::drive = nullptr;
 Lift* CommandBase::lift = nullptr;
+std::unique_ptr<OI> CommandBase::oi;
 
 CommandBase::CommandBase(const std::string &name) :
 		frc::Command(name) {
@@ -19,7 +20,8 @@ CommandBase::CommandBase(const std::string &name) :
 
 void CommandBase::initialize()
 {
-	oi = std::make_unique<OI>();
 	drive = new DriveTrain();
 	lift = new Lift();
+	oi = std::make_unique<OI>();
+	std::cout << "commandBase initialize completed" << std::endl;
 }
