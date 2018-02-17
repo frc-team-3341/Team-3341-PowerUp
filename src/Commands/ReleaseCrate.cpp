@@ -1,40 +1,40 @@
-#include "TankDrive.h"
+#include "ReleaseCrate.h"
+#include "CommandBase.h"
 
-TankDrive::TankDrive()
+ReleaseCrate::ReleaseCrate()
 {
+	Requires(catcher);
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
-	Requires(drive);
-
 }
 
 // Called just before this Command runs the first time
-void TankDrive::Initialize() {
-
+void ReleaseCrate::Initialize()
+{
+	catcher->Enable();
 }
 
 // Called repeatedly when this Command is scheduled to run
-
-
-void TankDrive::Execute() {
-	drive->tankDrive(-oi->getLeftStick()->GetY(), -oi->getRightStick()->GetY());
-	double average = (drive->leftDistance() + drive->rightDistance()) / 2;
-	//std::cout << drive->getAngle() << std::endl;
-
+void ReleaseCrate::Execute()
+{
+	catcher->CrateOut();
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool TankDrive::IsFinished() {
-	return false;
+bool ReleaseCrate::IsFinished()
+{
+	return !catcher->IsEnabled();
 }
 
 // Called once after isFinished returns true
-void TankDrive::End() {
-
+void ReleaseCrate::End()
+{
+	catcher->Stop();
+	catcher->Disable();
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void TankDrive::Interrupted() {
+void ReleaseCrate::Interrupted() {
 
 }

@@ -13,6 +13,7 @@ DriveTrain* CommandBase::drive = nullptr;
 Lift* CommandBase::lift = nullptr;
 std::unique_ptr<OI> CommandBase::oi;
 
+
 CommandBase::CommandBase(const std::string &name) :
 		frc::Command(name) {
 
@@ -20,8 +21,10 @@ CommandBase::CommandBase(const std::string &name) :
 
 void CommandBase::initialize()
 {
+
 	drive = new DriveTrain();
 	lift = new Lift();
 	oi = std::make_unique<OI>();
 	std::cout << "commandBase initialize completed" << std::endl;
+
 }
