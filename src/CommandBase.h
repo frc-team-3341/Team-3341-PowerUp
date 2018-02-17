@@ -6,6 +6,7 @@
 
 #include <Commands/Command.h>
 
+#include "Subsystems/Catcher.h"
 #include "OI.h"
 #include "Subsystems/DriveTrain.h"
 
@@ -22,8 +23,9 @@ public:
 	static void initialize();
 
 	// Create a single static instance of all of your subsystems
-	static std::unique_ptr<OI> oi;\
+	static std::unique_ptr<OI> oi;
 	static DriveTrain* drive;
+	static Catcher* catcher;
 };
 
 #endif  // COMMAND_BASE_H
