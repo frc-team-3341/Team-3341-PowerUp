@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename resource &apos;Team-3341-PowerUp/src/Commands/Intake2.h&apos; to &apos;Intake.h&apos;" description="Rename resource &apos;Intake2.h&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/Commands/Intake2.h" name="Intake.h" stamp="1518571779299" updateReferences="true"/>
-</session>
