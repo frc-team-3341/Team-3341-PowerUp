@@ -1,0 +1,12 @@
+22:17:24 **** Incremental Build of configuration Debug for project 2017Steamworks ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\ankbh/wpilib/cpp/current/include" "-IC:\\Users\\ankbh\\Robotics\\2017Steamworks\\src" "-IC:\\Users\\ankbh/wpilib/user/cpp/include" -O0 -Og -g3 -Wall -c -fmessage-length=0 -o "src\\Subsystems\\DriveTrain.o" "..\\src\\Subsystems\\DriveTrain.cpp" 
+In file included from ..\src\Subsystems\../CommandBase.h:10:0,
+                 from ..\src\Subsystems\DriveTrain.cpp:4:
+..\src\Subsystems\../Subsystems/Shooter.h:6:22: fatal error: CANTalon.h: No such file or directory
+ #include "CANTalon.h"
+                      ^
+compilation terminated.
+
+22:17:25 Build Finished (took 1s.513ms)
+

@@ -1,0 +1,36 @@
+#include "Drivetrain.h"
+#include "../RobotMap.h"
+
+
+Drivetrain::Drivetrain() : Subsystem("Drivetrain"),
+rightMotor(new CANTalon(RIGHT_MOTOR_PORT)), leftMotor(new CANTalon(LEFT_MOTOR_PORT))
+{
+
+}
+
+Drivetrain::~Drivetrain()
+{
+	delete rightMotor;
+	delete leftMotor;
+}
+
+void Drivetrain::InitDefaultCommand() {
+	// Set the default command for a subsystem here.
+	// SetDefaultCommand(new MySpecialCommand());
+	SetDefaultCommand(new TankDrive());
+}
+
+// Put methods for controlling this subsystem
+// here. Call these from Commands.
+
+void Drivetrain::tankDrive(double leftVal, double rightVal)
+{
+	leftMotor->Set(leftVal);
+	rightMotor->Set(rightVal);
+}
+
+void Drivetrain::reverseDir()
+{
+	leftMotor->SetInverted(!leftMotor->GetInverted());
+	rightMotor->SetInverted(!rightMotor->GetInverted());
+}

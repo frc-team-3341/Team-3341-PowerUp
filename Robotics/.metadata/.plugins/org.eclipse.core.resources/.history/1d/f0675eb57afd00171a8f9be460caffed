@@ -1,0 +1,26 @@
+#ifndef Drivetrain_H
+#define Drivetrain_H
+
+//#include "CANTalon.h"
+#include "ctrlib/CANTalon.h"
+#include <WPILib.h>
+#include <Commands/Subsystem.h>
+
+class Drivetrain : public frc::Subsystem {
+private:
+	// It's desirable that everything possible under private except
+	// for methods that implement subsystem capabilities
+	CANTalon * rightMotor;
+	CANTalon * leftMotor;
+
+	const int RIGHT_MOTOR_PORT = 12;
+	const int LEFT_MOTOR_PORT = 13;
+public:
+	Drivetrain();
+	~Drivetrain();
+	void InitDefaultCommand();
+	void tankDrive(double leftVal, double rightVal);
+	void reverseDir();
+};
+
+#endif  // Drivetrain_H

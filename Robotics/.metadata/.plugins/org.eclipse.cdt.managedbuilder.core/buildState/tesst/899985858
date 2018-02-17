@@ -1,0 +1,22 @@
+#
+#Tue Feb 13 17:47:42 PST 2018
+Debug/FRCUserProgram=1
+src/Commands/moveWinch.h=1
+Debug/src/Commands/ExampleCommand.o=1
+src/Commands/PosLoopThing.cpp=1
+src/Commands/PosLoopThing.h=1
+Debug/src/Commands/Drive.o=1
+Debug/src/Subsystems/Shooter.o=1
+src/Robot.cpp=1
+Debug/src/Subsystems/Winch.o=1
+src/Commands/moveWinch.cpp=1
+Debug/src/Subsystems/ExampleSubsystem.o=1
+src/RobotMap.h=1
+src/Subsystems/DriveTrainSubsystem.cpp=1
+Debug/src/CommandBase.o=1
+Debug/src/Robot.o=1
+src/CommandBase.cpp=1
+src/Subsystems/Winch.cpp=1
+Debug/src/Subsystems/DriveTrainSubsystem.o=1
+Debug/src/Commands/PosLoopThing.o=1
+Debug/src/Commands/moveWinch.o=1

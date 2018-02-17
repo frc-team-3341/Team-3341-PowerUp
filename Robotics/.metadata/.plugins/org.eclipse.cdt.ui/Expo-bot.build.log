@@ -1,0 +1,11 @@
+17:47:33 **** Incremental Build of configuration Debug for project Expo-bot ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\ankbh/wpilib/cpp/current/include" "-IC:\\Users\\ankbh\\Robotics\\Expo-bot\\src" "-IC:\\Users\\ankbh/wpilib/user/cpp/include" -O0 -Og -g3 -Wall -c -fmessage-length=0 -pthread -o "src\\Commands\\drive.o" "..\\src\\Commands\\drive.cpp" 
+In file included from C:\Users\ankbh\Robotics\Expo-bot\src/CommandBase.h:6:0,
+                 from C:\Users\ankbh\Robotics\Expo-bot\src/Commands/drive.h:5,
+                 from ..\src\Commands\drive.cpp:1:
+C:\Users\ankbh\Robotics\Expo-bot\src/Subsystems/Winch.h:5:29: fatal error: ctrlib/CANTalon.h: No such file or directory
+compilation terminated.
+
+17:47:34 Build Finished (took 1s.62ms)
+

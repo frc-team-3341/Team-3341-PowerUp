@@ -1,0 +1,7 @@
+17:47:32 **** Incremental Build of configuration Debug for project Drivetrain_test_3 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\ankbh/wpilib/user/cpp/lib" "-LC:\\Users\\ankbh/wpilib/cpp/current/reflib/linux/athena/shared" "-LC:\\Users\\ankbh/wpilib/common/current/lib/linux/athena/shared" -pthread -rdynamic -Wl,-rpath,/opt/GenICam_v3_0_NI/bin/Linux32_ARM,-rpath,/usr/local/frc/lib -o FRCUserProgram "src\\CommandBase.o" "src\\Commands\\ExampleCommand.o" "src\\Commands\\TankDrive.o" "src\\OI.o" "src\\Robot.o" "src\\Subsystems\\Drivetrain.o" "src\\Subsystems\\ExampleSubsystem.o" -lCTRE_Phoenix -lCTRE_PhoenixCCI -lCTRE_Phoenix -lCTRE_PhoenixCCI -lwpi 
+arm-frc-linux-gnueabi-g++: error: src\Subsystems\Drivetrain.o: No such file or directory
+
+17:47:33 Build Finished (took 476ms)
+

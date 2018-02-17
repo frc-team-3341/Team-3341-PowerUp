@@ -1,0 +1,31 @@
+17:47:35 **** Incremental Build of configuration Debug for project Mock2k17 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\ankbh/wpilib/cpp/current/include" "-IC:\\Users\\ankbh\\Robotics\\Mock2k17\\src" "-IC:\\Users\\ankbh/wpilib/user/cpp/include" -O0 -Og -g3 -Wall -c -fmessage-length=0 -pthread -o "src\\Commands\\Autonomous.o" "..\\src\\Commands\\Autonomous.cpp" 
+..\src\Commands\Autonomous.cpp: In constructor 'Autonomous::Autonomous()':
+..\src\Commands\Autonomous.cpp:6:20: error: expected type-specifier before 'Forward'
+  AddSequential(new Forward());
+                    ^
+..\src\Commands\Autonomous.cpp:8:20: error: expected type-specifier before 'Turn'
+  AddSequential(new Turn(90));
+                    ^
+..\src\Commands\Autonomous.cpp:9:20: error: expected type-specifier before 'DriveUntilTarget'
+  AddSequential(new DriveUntilTarget());
+                    ^
+..\src\Commands\Autonomous.cpp:10:20: error: expected type-specifier before 'Turn'
+  AddSequential(new Turn(-90));
+                    ^
+..\src\Commands\Autonomous.cpp:12:20: error: expected type-specifier before 'Forward'
+  AddSequential(new Forward());
+                    ^
+..\src\Commands\Autonomous.cpp:13:20: error: expected type-specifier before 'Park'
+  AddSequential(new Park());
+                    ^
+..\src\Commands\Autonomous.cpp:14:20: error: expected type-specifier before 'DriveUntilWall'
+  AddSequential(new DriveUntilWall());
+                    ^
+..\src\Commands\Autonomous.cpp:15:20: error: expected type-specifier before 'PushTarget'
+  AddSequential(new PushTarget());
+                    ^
+
+17:47:38 Build Finished (took 2s.397ms)
+

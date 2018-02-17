@@ -1,0 +1,18 @@
+20:22:34 **** Incremental Build of configuration Debug for project ExpoBot3341 ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\ankbh/wpilib/cpp/current/include" "-IC:\\Users\\ankbh\\Robotics\\ExpoBot3341\\src" "-IC:\\Users\\ankbh/wpilib/user/cpp/include" -O0 -Og -g3 -Wall -c -fmessage-length=0 -o "src\\OI.o" "..\\src\\OI.cpp" 
+In file included from ..\src\OI.cpp:1:0:
+..\src\OI.h: In constructor 'OI::OI()':
+..\src\OI.h:14:13: warning: 'OI::rightJoystick' will be initialized after [-Wreorder]
+  Joystick * rightJoystick;
+             ^
+..\src\OI.h:13:13: warning:   'frc::Joystick* OI::leftJoystick' [-Wreorder]
+  Joystick * leftJoystick;
+             ^
+..\src\OI.cpp:5:1: warning:   when initialized here [-Wreorder]
+ OI::OI()
+ ^
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\ankbh/wpilib/cpp/current/lib" "-LC:\\Users\\ankbh/wpilib/user/cpp/lib" -Wl,-rpath,/opt/GenICam_v3_0_NI/bin/Linux32_ARM -o FRCUserProgram "src\\CommandBase.o" "src\\Commands\\ExampleCommand.o" "src\\OI.o" "src\\Robot.o" "src\\Subsystems\\ExampleSubsystem.o" -lCTRLib -lCTRLibDriver -lwpi 
+
+20:22:39 Build Finished (took 5s.7ms)
+

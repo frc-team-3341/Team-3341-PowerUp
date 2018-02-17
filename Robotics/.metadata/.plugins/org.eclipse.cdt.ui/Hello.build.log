@@ -1,0 +1,12 @@
+21:57:31 **** Incremental Build of configuration Debug for project Hello ****
+Info: Configuration "Debug" uses tool-chain "MinGW GCC" that is unsupported on this system, attempting to build anyway.
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Hello.o" "..\\src\\Hello.cpp" 
+Cannot run program "g++": Launching failed
+
+Error: Program "g++" not found in PATH
+PATH=[\bin;\bin;\usr\bin;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\frc\bin;C:\Users\ankbh\AppData\Local\Microsoft\WindowsApps]
+
+
+21:57:31 Build Finished (took 47ms)
+

@@ -1,0 +1,7 @@
+17:47:34 **** Incremental Build of configuration Debug for project Mock ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\ankbh/wpilib/user/cpp/lib" "-LC:\\Users\\ankbh/wpilib/cpp/current/reflib/linux/athena/shared" "-LC:\\Users\\ankbh/wpilib/common/current/lib/linux/athena/shared" -pthread -rdynamic -Wl,-rpath,/opt/GenICam_v3_0_NI/bin/Linux32_ARM,-rpath,/usr/local/frc/lib -o FRCUserProgram "src\\CommandBase.o" "src\\Commands\\AlignWithWall.o" "src\\Commands\\ArmDown.o" "src\\Commands\\ArmUp.o" "src\\Commands\\Autonomous.o" "src\\Commands\\Drive.o" "src\\Commands\\GyroTurn.o" "src\\Commands\\MoveArm.o" "src\\Commands\\MoveFromWall.o" "src\\Commands\\MoveUntilWall.o" "src\\Commands\\TankDrive.o" "src\\OI.o" "src\\Robot.o" "src\\Subsystems\\Arm.o" "src\\Subsystems\\DriveTrain.o" "src\\Utilities\\NetworkTablesInterface.o" -lCTRE_Phoenix -lCTRE_PhoenixCCI -lCTRE_Phoenix -lCTRE_PhoenixCCI -lwpi 
+arm-frc-linux-gnueabi-g++: error: src\Commands\ArmUp.o: No such file or directory
+
+17:47:35 Build Finished (took 593ms)
+

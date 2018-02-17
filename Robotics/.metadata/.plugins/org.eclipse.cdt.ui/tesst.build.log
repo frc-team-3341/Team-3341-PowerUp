@@ -1,0 +1,11 @@
+17:47:40 **** Incremental Build of configuration Debug for project tesst ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\ankbh/wpilib/cpp/current/include" "-IC:\\Users\\ankbh\\Robotics\\tesst\\src" "-IC:\\Users\\ankbh/wpilib/user/cpp/include" -O0 -Og -g3 -Wall -c -fmessage-length=0 -pthread -o "src\\Commands\\PosLoopThing.o" "..\\src\\Commands\\PosLoopThing.cpp" 
+In file included from ..\src\Commands\../CommandBase.h:13:0,
+                 from ..\src\Commands\PosLoopThing.h:4,
+                 from ..\src\Commands\PosLoopThing.cpp:1:
+..\src\Commands\../Subsystems/Winch.h:5:29: fatal error: ctrlib/CANTalon.h: No such file or directory
+compilation terminated.
+
+17:47:42 Build Finished (took 1s.756ms)
+
