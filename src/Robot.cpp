@@ -1,4 +1,6 @@
 #include <memory>
+#include <iostream>
+
 
 #include <Commands/Command.h>
 #include <Commands/Scheduler.h>
@@ -6,12 +8,13 @@
 #include <LiveWindow/LiveWindow.h>
 #include <SmartDashboard/SendableChooser.h>
 #include <SmartDashboard/SmartDashboard.h>
-#include "iostream"
-using namespace std;
 #include "CommandBase.h"
 #include "Commands/TankDrive.h"
 #include "Commands/DriveForward.h"
 #include "Commands/Turn.h"
+
+using namespace std;
+
 
 class Robot: public frc::IterativeRobot {
 public:
@@ -24,6 +27,7 @@ public:
 		// chooser.AddObject("My Auto", new MyAutoCommand());
 		frc::SmartDashboard::PutData("Auto Modes", &chooser);
 		CameraServer::GetInstance()->StartAutomaticCapture();
+		cout << "RobotInit" << endl;
 	}
 
 	/**
