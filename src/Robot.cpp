@@ -1,4 +1,6 @@
 #include <memory>
+#include <iostream>
+using namespace std;
 
 #include <Commands/Command.h>
 #include <Commands/Scheduler.h>
@@ -26,6 +28,7 @@ public:
 
 		// chooser.AddObject("My Auto", new MyAutoCommand());
 		frc::SmartDashboard::PutData("Auto Modes", &chooser);
+		cout << "RobotInit" << endl;
 	}
 
 	/**

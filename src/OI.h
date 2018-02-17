@@ -7,16 +7,18 @@ class OI {
 private:
 	Joystick* leftStick;
 	Joystick* rightStick;
-	Joystick* operatorStick;
-	Button* shootCrate;
-	Button* acquireCrate;
+
+	Joystick* liftStick;
+	Button* testButton;
+	Button* calibrateLift;
 
 
 public:
 	OI();
 	Joystick* getLeftStick();
 	Joystick* getRightStick();
-	Joystick* getOperatorStick();
+
+	Joystick* getLiftStick();
 
 };
 

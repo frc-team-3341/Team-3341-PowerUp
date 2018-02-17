@@ -1,40 +1,37 @@
-#include "TankDrive.h"
+#include "MoveLiftToMinHeight.h"
 
-TankDrive::TankDrive()
-{
+MoveLiftToMinHeight::MoveLiftToMinHeight() {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
-	Requires(drive);
-
+	Requires(lift);
 }
 
 // Called just before this Command runs the first time
-void TankDrive::Initialize() {
+void MoveLiftToMinHeight::Initialize() {
 
 }
 
 // Called repeatedly when this Command is scheduled to run
-
-
-void TankDrive::Execute() {
-	drive->tankDrive(-oi->getLeftStick()->GetY(), -oi->getRightStick()->GetY());
-	double average = (drive->leftDistance() + drive->rightDistance()) / 2;
-	//std::cout << drive->getAngle() << std::endl;
-
+void MoveLiftToMinHeight::Execute() {
+	lift->move(-0.1);
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool TankDrive::IsFinished() {
-	return false;
+bool MoveLiftToMinHeight::IsFinished() {
+	if(lift->getMotor()->GetMotorOutputPercent() == 0)
+		return true;
+	else
+		return false;
 }
 
 // Called once after isFinished returns true
-void TankDrive::End() {
-
+void MoveLiftToMinHeight::End() {
+	lift->resetEncoder();
+	lift->move(0);
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void TankDrive::Interrupted() {
+void MoveLiftToMinHeight::Interrupted() {
 
 }

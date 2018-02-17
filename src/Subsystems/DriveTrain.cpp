@@ -3,6 +3,7 @@
 #include "../Commands/TankDrive.h"
 #include "iostream"
 using namespace std;
+
 #define max(x, y) (((x) > (y)) ? (x) : (y))
 
 DriveTrain::DriveTrain() : Subsystem("DriveTrain"), left(new TalonSRX(LEFTMOTOR)), right(new TalonSRX(RIGHTMOTOR)),
@@ -21,6 +22,7 @@ DriveTrain::DriveTrain() : Subsystem("DriveTrain"), left(new TalonSRX(LEFTMOTOR)
 
 	gyro->Reset();
 	gyro->Calibrate();
+
 
 
 }
@@ -113,5 +115,17 @@ double DriveTrain::rightDistance() { //inches
 
 
 }
-// Put methods for controlling this subsystem
-// here. Call these from Commands.
+
+double DriveTrain::leftDistance()
+{
+	double relativePosition = (left->GetSensorCollection().GetQuadraturePosition());
+	relativePosition = (relativePosition / 4096) * circumference;
+	//std::cout << "Left Wheel Relative Position: " << relativePosition << std::endl;
+}
+
+double DriveTrain::rightDistance()
+{
+	double relativePosition = -(right->GetSensorCollection().GetQuadraturePosition());
+	relativePosition = (relativePosition / 4096) * circumference;
+	//std::cout << "Right Wheel Relative Position: " << relativePosition << std::endl;
+}

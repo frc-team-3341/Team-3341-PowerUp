@@ -5,12 +5,19 @@
 
 
 #include <WPILib.h>
+#include "Commands/MoveLiftToHeight.h"
+#include "Commands/LiftPositionControl.h"
+#include "Commands/MoveLiftToMinHeight.h"
 
-OI::OI() : leftStick(new Joystick(LEFTMOTOR)),
-rightStick(new Joystick(RIGHTMOTOR))
+
+OI::OI() : leftStick(new Joystick(0)),
+rightStick(new Joystick(1)),
+liftStick(new Joystick(2))
 {
-	catcherButtons();
-	// Process operator interface input here.
+	testButton = new JoystickButton(liftStick,1);
+	calibrateLift = new JoystickButton(liftStick,3);
+	testButton->WhenPressed(new MoveLiftToHeight(4));
+	calibrateLift->WhenPressed(new MoveLiftToMinHeight());
 
 }
 
@@ -38,8 +45,9 @@ Joystick* OI::getRightStick()
 	return rightStick;
 }
 
-Joystick* OI::getOperatorStick()
+
+Joystick* OI::getLiftStick()
 {
-	return operatorStick;
+	return liftStick;
 }
 
