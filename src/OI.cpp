@@ -1,4 +1,7 @@
 #include "OI.h"
+#include "Commands/AcquireCrate.h"
+#include "Commands/ReleaseCrate.h"
+#include "Commands/StopCatcher.h"
 
 #include <WPILib.h>
 
