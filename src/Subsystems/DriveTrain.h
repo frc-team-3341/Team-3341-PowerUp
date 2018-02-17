@@ -6,6 +6,8 @@
 #include "ctre/Phoenix.h"
 
 #include "math.h"
+#include "RobotMap.h"
+
 
 class DriveTrain : public Subsystem {
 private:

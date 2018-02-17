@@ -10,6 +10,9 @@
 #include "OI.h"
 #include "Subsystems/DriveTrain.h"
 
+#include "Subsystems/Lift.h"
+
+
 /**
  * The base for all commands. All atomic commands should subclass CommandBase.
  * CommandBase stores creates and stores each control system. To access a
@@ -26,6 +29,8 @@ public:
 	static std::unique_ptr<OI> oi;
 	static DriveTrain* drive;
 	static Catcher* catcher;
+	static Lift* lift;
+
 };
 
 #endif  // COMMAND_BASE_H
