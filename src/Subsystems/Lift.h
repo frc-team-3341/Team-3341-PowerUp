@@ -26,8 +26,8 @@ public:
 	double getHeight();
 	void resetEncoder();
 	void RobotSetClosedPositionLoop(TalonSRX* talon);
-	WVPIDController* getHeightPid();
-	WVPIDController* getLiftPositionPid();
+	//WVPIDController* getHeightPid();
+	//WVPIDController* getLiftPositionPid();
 	double getPosition();
 };
 

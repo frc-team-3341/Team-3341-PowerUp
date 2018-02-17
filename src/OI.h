@@ -12,7 +12,7 @@ private:
 	Button* testButton;
 	Button* calibrateLift;
 
-
+    void catherButtons(void);
 public:
 	OI();
 	Joystick* getLeftStick();

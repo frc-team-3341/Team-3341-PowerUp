@@ -18,12 +18,13 @@ liftStick(new Joystick(2))
 	calibrateLift = new JoystickButton(liftStick,3);
 	testButton->WhenPressed(new MoveLiftToHeight(4));
 	calibrateLift->WhenPressed(new MoveLiftToMinHeight());
+	catcherButtons();
 
 }
 
 
 
-OI::catcherButtons()
+void OI::catcherButtons(void)
 {
 	shootCrate = new JoystickButton(leftStick, 1);
 	shootCrate->WhenPressed(new ReleaseCrate());
