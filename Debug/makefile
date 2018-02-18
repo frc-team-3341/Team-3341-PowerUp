@@ -8,6 +8,7 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
+-include src/Utilities/subdir.mk
 -include src/Subsystems/subdir.mk
 -include src/Commands/subdir.mk
 -include src/subdir.mk
@@ -46,7 +47,7 @@ all: FRCUserProgram
 FRCUserProgram: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: Cross G++ Linker'
-	g++ -L"C:\Users\Diya/wpilib/user/cpp/lib" -L"C:\Users\Diya/wpilib/cpp/current/reflib/linux/athena/shared" -L"C:\Users\Diya/wpilib/common/current/lib/linux/athena/shared" -pthread -rdynamic -Wl,-rpath,/opt/GenICam_v3_0_NI/bin/Linux32_ARM,-rpath,/usr/local/frc/lib -o "FRCUserProgram" $(OBJS) $(USER_OBJS) $(LIBS)
+	g++ -L"C:\Users\ankbh/wpilib/user/cpp/lib" -L"C:\Users\ankbh/wpilib/cpp/current/reflib/linux/athena/shared" -L"C:\Users\ankbh/wpilib/common/current/lib/linux/athena/shared" -pthread -rdynamic -Wl,-rpath,/opt/GenICam_v3_0_NI/bin/Linux32_ARM,-rpath,/usr/local/frc/lib -o "FRCUserProgram" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -56,6 +57,5 @@ clean:
 	-@echo ' '
 
 .PHONY: all clean dependents
-.SECONDARY:
 
 -include ../makefile.targets

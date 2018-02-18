@@ -26,4 +26,5 @@ SUBDIRS := \
 src \
 src/Commands \
 src/Subsystems \
+src/Utilities \
 
