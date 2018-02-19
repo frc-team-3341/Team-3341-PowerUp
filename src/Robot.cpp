@@ -13,8 +13,28 @@ using namespace std;
 #include "Commands/DriveForward.h"
 #include "Commands/Turn.h"
 
+//#include <opencv2/imgproc/imgproc.hpp>
+//#include <opencv2/core/core.hpp>
+
 class Robot: public frc::IterativeRobot {
 public:
+
+	//static void VisionThread()
+	  //  {
+	    //    cs::UsbCamera camera = CameraServer::GetInstance()->StartAutomaticCapture();
+	       // camera.SetResolution(640, 480);
+	       // cs::CvSink cvSink = CameraServer::GetInstance()->GetVideo();
+	        //cs::CvSource outputStreamStd = CameraServer::GetInstance()->PutVideo("Gray", 640, 480);
+	        //cv::Mat source;
+	        //cv::Mat output;
+	        //while(true) {
+	          //  cvSink.GrabFrame(source);
+	            //cvtColor(source, output, cv::COLOR_BGR2GRAY);
+	            //outputStreamStd.PutFrame(output);
+	        //}
+	    //}
+
+
 	void RobotInit() override {
 		CommandBase::initialize();
 
@@ -23,6 +43,13 @@ public:
 
 		// chooser.AddObject("My Auto", new MyAutoCommand());
 		frc::SmartDashboard::PutData("Auto Modes", &chooser);
+
+		CameraServer::GetInstance()->StartAutomaticCapture();
+
+		//std::thread visionThread(VisionThread);
+			//        visionThread.detach();
+						//std::thread visionThread4(VisionThread4);
+						//visionThread4.detach();
 	}
 
 	/**

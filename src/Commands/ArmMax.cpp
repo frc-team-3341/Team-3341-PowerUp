@@ -1,37 +1,35 @@
-#include "TankDrive.h"
+#include "ArmMax.h"
 
-TankDrive::TankDrive() {
+ArmMax::ArmMax() : anglePID(new WVPIDController(1, 0, 0, arm->getMin(), false)) {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
-	Requires(drive);
-
+	Requires(arm);
 }
 
 // Called just before this Command runs the first time
-void TankDrive::Initialize() {
-
+void ArmMax::Initialize() {
+	//arm->seta(true);
 }
 
 // Called repeatedly when this Command is scheduled to run
-
-void TankDrive::Execute() {
-	drive->tankDrive(-oi->getLeftStick()->GetY(), -oi->getRightStick()->GetY());
-	double average = (drive->leftDistance() + drive->rightDistance()) / 2;
-	//std::cout << drive->getAngle() << std::endl;
+void ArmMax::Execute() {
+	double measuredPower = anglePID->Tick(arm->getPosition());
+	arm->move(measuredPower);
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool TankDrive::IsFinished() {
-	return false;
+bool ArmMax::IsFinished() {
+	return anglePID->GetError() < 3;
 }
 
 // Called once after isFinished returns true
-void TankDrive::End() {
-
+void ArmMax::End() {
+	arm->move(0);
+	//arm->seta(false);
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void TankDrive::Interrupted() {
+void ArmMax::Interrupted() {
 
 }

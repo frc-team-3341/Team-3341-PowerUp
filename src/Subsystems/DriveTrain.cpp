@@ -28,8 +28,9 @@ DriveTrain::DriveTrain() : Subsystem("DriveTrain"), left(new TalonSRX(LEFTMOTOR)
 void DriveTrain::InitDefaultCommand() {
 	// Set the default command for a subsystem here.
 	// SetDefaultCommand(new MySpecialCommand());
-	std::cout<<"DriveTrain InitDefaultCommand Successful" <<std::endl;
+
 	SetDefaultCommand(new TankDrive());
+	std::cout<<"DriveTrain InitDefaultCommand Successful" <<std::endl;
 }
 
 

@@ -12,11 +12,11 @@
 // following variables to use with your drivetrain subsystem.
 constexpr int LEFTMOTOR = 3;
 constexpr int RIGHTMOTOR = 2;
+constexpr int ARMMOTOR = 5;
 
 // If you are using multiple modules, make sure to define both the port
 // number and the module. For example you with a rangefinder:
 // constexpr int RANGE_FINDER_PORT = 1;
 // constexpr int RANGE_FINDER_MODULE = 1;
-
 
 #endif  // ROBOTMAP_H

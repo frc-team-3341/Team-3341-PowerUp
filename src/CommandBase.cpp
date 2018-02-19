@@ -8,16 +8,21 @@
 // line should be repeated for each subsystem in the project.
 
 
-std::unique_ptr<OI> CommandBase::oi;
+OI* CommandBase::oi = nullptr;
 DriveTrain* CommandBase::drive = nullptr;
+Arm* CommandBase::arm = nullptr;
 
 CommandBase::CommandBase(const std::string &name) :
 		frc::Command(name) {
 
 }
 
-void CommandBase::initialize()
-{
-	oi = std::make_unique<OI>();
+void CommandBase::initialize() {
+
+	//oi = std::make_unique<OI>();
+	oi = new OI();
 	drive = new DriveTrain();
+	std::cout << "help me" << std::endl;
+	arm = new Arm();
+
 }

@@ -3,11 +3,13 @@
 
 #include <memory>
 #include <string>
+#include <iostream>
 
 #include <Commands/Command.h>
 
 #include "OI.h"
 #include "Subsystems/DriveTrain.h"
+#include "Subsystems/Arm.h"
 
 /**
  * The base for all commands. All atomic commands should subclass CommandBase.
@@ -22,8 +24,9 @@ public:
 	static void initialize();
 
 	// Create a single static instance of all of your subsystems
-	static std::unique_ptr<OI> oi;\
+	static OI* oi;
 	static DriveTrain* drive;
+	static Arm* arm;
 };
 
 #endif  // COMMAND_BASE_H
