@@ -19,7 +19,7 @@ void ArmMin::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool ArmMin::IsFinished() {
-	return anglePID->GetError() < 3; //can change as needed
+	return anglePID->GetError() < 2; //can change as needed
 }
 
 // Called once after isFinished returns true

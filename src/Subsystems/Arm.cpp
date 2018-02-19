@@ -2,10 +2,12 @@
 #include "../RobotMap.h"
 #include "../Commands/ArmSpeedPID.h"
 
-Arm::Arm() : Subsystem("ExampleSubsystem"), armMotor(new TalonSRX(ARMMOTOR)),
-armEncoder(new frc::Encoder(0, 1)), minPosition(0)
+Arm::Arm() : Subsystem("Arm"), armMotor(new TalonSRX(ARMMOTOR)), minPosition(0)
 {
-	armEncoder->Reset();
+	//armEncoder->Reset();
+	armMotor->ConfigSelectedFeedbackSensor(FeedbackDevice::Analog, 0, 10);
+		// left->ConfigEncoderCodesPerRev(360);
+	armMotor->SetSelectedSensorPosition(0,0,10);
 }
 
 void Arm::InitDefaultCommand() {
@@ -20,20 +22,20 @@ void Arm::move(double power) {
 
 void Arm::reset()
 {
-	armEncoder->Reset();
+	armMotor->SetSelectedSensorPosition(0,0,10);
 }
 
 double Arm::getPosition() {
-	return (double) armEncoder->Get();
+	return armMotor->GetSelectedSensorPosition(0);
 }
 
 double Arm::getSpeed() {
-	return armEncoder->GetRate();
+	return armMotor->GetSelectedSensorVelocity(0);
 }
 
-Encoder* Arm::getEncoder() {
-	return armEncoder;
-}
+//Encoder* Arm::getEncoder() {
+	//return armEncoder;
+//}
 
 TalonSRX* Arm::getArmMotor() {
 	return armMotor;

@@ -9,11 +9,13 @@ ArmSpeedPID::ArmSpeedPID() : speedPID(new WVPIDController(1, 0, 0, arm->getPosit
 // Called just before this Command runs the first time
 void ArmSpeedPID::Initialize() {
 	//double targetSpeed = oi->getArmStick()->GetY();
+
 }
 
 // Called repeatedly when this Command is scheduled to run
 void ArmSpeedPID::Execute() {
 	//if (!arm->whenyouarerunningabuttoncommanditistrue) {
+		//speedPID->SetSetPoint(oi->getArmStick()->GetY());
 		double targetSpeed = oi->getArmStick()->GetY();
 		double adjSpeed = speedPID->Tick(targetSpeed);
 		arm->move(adjSpeed);

@@ -13,7 +13,7 @@ private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
 	TalonSRX* armMotor;
-	Encoder* armEncoder;
+	//Encoder* armEncoder;
 	double maxPosition;
 	double minPosition;
 
@@ -25,7 +25,7 @@ public:
 	double getPosition();
 	double getSpeed();
 	double Limit(double num, double max);
-	Encoder* getEncoder();
+	//Encoder* getEncoder();
 	TalonSRX* getArmMotor();
 	double getMin();
 	double getMax();
