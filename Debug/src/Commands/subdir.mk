@@ -5,6 +5,7 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
 ../src/Commands/AcquireCrate.cpp \
+../src/Commands/Diagnostic.cpp \
 ../src/Commands/DriveForward.cpp \
 ../src/Commands/LiftPositionControl.cpp \
 ../src/Commands/MoveLift.cpp \
@@ -19,6 +20,7 @@ CPP_SRCS += \
 
 OBJS += \
 ./src/Commands/AcquireCrate.o \
+./src/Commands/Diagnostic.o \
 ./src/Commands/DriveForward.o \
 ./src/Commands/LiftPositionControl.o \
 ./src/Commands/MoveLift.o \
@@ -33,6 +35,7 @@ OBJS += \
 
 CPP_DEPS += \
 ./src/Commands/AcquireCrate.d \
+./src/Commands/Diagnostic.d \
 ./src/Commands/DriveForward.d \
 ./src/Commands/LiftPositionControl.d \
 ./src/Commands/MoveLift.d \
@@ -50,7 +53,7 @@ CPP_DEPS += \
 src/Commands/%.o: ../src/Commands/%.cpp
 	@echo 'Building file: $<'
 	@echo 'Invoking: Cross G++ Compiler'
-	g++ -I"C:\Users\ankbh/wpilib/cpp/current/include" -I"C:\Users\ankbh\Robotics\Team-3341-PowerUp\src" -I"C:\Users\ankbh/wpilib/user/cpp/include" -O0 -g3 -Wall -c -fmessage-length=0 -pthread -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+	g++ -I"C:\Users\ankbh/wpilib/cpp/current/include" -I"C:\Users\Temp\ankbhatia\Team-3341-PowerUp\src" -I"C:\Users\ankbh/wpilib/user/cpp/include" -O0 -g3 -Wall -c -fmessage-length=0 -pthread -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 

@@ -11,6 +11,7 @@
 #include "CommandBase.h"
 #include "Commands/TankDrive.h"
 #include "Commands/DriveForward.h"
+#include "Commands/Diagnostic.h"
 #include "Commands/Turn.h"
 
 using namespace std;
@@ -18,12 +19,13 @@ using namespace std;
 
 class Robot: public frc::IterativeRobot {
 public:
+
 	void RobotInit() override {
 		CommandBase::initialize();
 
 		std::cout<<"RobotInit Successful"<< std::endl;
 		chooser.AddDefault("Default Auto", new DriveForward(10));
-
+		diag = new Diagnostic();
 		// chooser.AddObject("My Auto", new MyAutoCommand());
 		frc::SmartDashboard::PutData("Auto Modes", &chooser);
 		CameraServer::GetInstance()->StartAutomaticCapture();
@@ -83,22 +85,30 @@ public:
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
+
 		if (autonomousCommand != nullptr) {
 			autonomousCommand->Cancel();
 		}
+
+
 	}
 
 	void TeleopPeriodic() override {
 		frc::Scheduler::GetInstance()->Run();
+
+
 	}
 
 	void TestPeriodic() override {
 		frc::LiveWindow::GetInstance()->Run();
+		diag->Execute();
+
 	}
 
 private:
 	std::unique_ptr<frc::Command> autonomousCommand;
 	frc::SendableChooser<frc::Command*> chooser;
+	Diagnostic* diag;
 };
 
 START_ROBOT_CLASS(Robot)

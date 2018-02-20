@@ -30,6 +30,8 @@ public:
 	void gyroReset();
 	double leftDistance(); //inches
 	double rightDistance(); //inches
+	double leftSpeed();
+	double rightSpeed();
 
 };
 

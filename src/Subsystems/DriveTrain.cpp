@@ -110,6 +110,14 @@ double DriveTrain::rightDistance() { //inches
 	//relativePosition = relativePosition * circumference / 360;
 	std::cout<< "Right Wheel Relative Position: " << relativePosition << std::endl;
 	return relativePosition;
+}
 
+double DriveTrain::leftSpeed()
+{
+	return left->GetSensorCollection().GetQuadratureVelocity();
+}
 
+double DriveTrain::rightSpeed()
+{
+	return right->GetSensorCollection().GetQuadratureVelocity();
 }
