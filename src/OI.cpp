@@ -10,6 +10,7 @@
 #include "Commands/ArmSpeedPID.h"
 #include "Commands/ArmMin.h"
 #include "Commands/TestReset.h"
+#include "Commands/AutoArmMove.h"
 
 OI::OI() : leftStick(new Joystick(0)),
 rightStick(new Joystick(1)),
@@ -34,7 +35,8 @@ armMax(new JoystickButton(armStick, 7))
 	armToggle->WhenPressed(new ArmPositionPID());
 	armToggle->WhenReleased(new ArmSpeedPID());
 
-	armMin->WhenPressed(new ArmMin());
+	armMin->ToggleWhenPressed(new ArmMin());
+
 	armMin->WhenReleased(new ArmSpeedPID());
 
 	armMax->WhenPressed(new TestReset());
@@ -43,6 +45,8 @@ armMax(new JoystickButton(armStick, 7))
 	calibrateLift = new JoystickButton(liftStick,3);
 	testButton->WhenPressed(new MoveLiftToHeight(4));
 	calibrateLift->WhenPressed(new MoveLiftToMinHeight());
+
+	armMax->ToggleWhenPressed(new AutoArmMove(50)); //degrees
 
 }
 

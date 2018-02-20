@@ -9,11 +9,15 @@
 
 #include <Commands/Command.h>
 #include "../CommandBase.h"
+#include "../Utilities/WVPIDController.h"
 
+class AutoArmMove : public CommandBase {
 
-class TestReset : public CommandBase {
+private:
+	WVPIDController* anglePID;
+
 public:
-	TestReset();
+	AutoArmMove(double target);
 	void Initialize() override;
 	void Execute() override;
 	bool IsFinished() override;
