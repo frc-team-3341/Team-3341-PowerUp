@@ -2,7 +2,7 @@
 #include "../RobotMap.h"
 #include "../Commands/ArmSpeedPID.h"
 
-Arm::Arm() : Subsystem("Arm"), armMotor(new TalonSRX(ARMMOTOR)), minPosition(-84),
+Arm::Arm() : Subsystem("Arm"), armMotor(new TalonSRX(5)), minPosition(-84),
 maxPosition(minPosition + 370)
 {
 	//armEncoder->Reset();
@@ -36,6 +36,7 @@ void Arm::reset()
 {
 	armMotor->SetSelectedSensorPosition(0, 0, 10);
 	minPosition = getPosition();
+	maxPosition = minPosition + 370;
 	std::cout << "min position" << minPosition << std::endl;
 }
 

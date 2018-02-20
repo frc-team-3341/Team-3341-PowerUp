@@ -25,12 +25,13 @@ void ArmMin::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool ArmMin::IsFinished() {
-	if(arm->getArmMotor()->GetSelectedSensorVelocity(0))
+	if(arm->getArmMotor()->GetSensorCollection().IsFwdLimitSwitchClosed())
 	{
 		return true;
 	}
 	else
 		return false;
+
 
 }
 
@@ -39,7 +40,8 @@ void ArmMin::End() {
 	//arm->move(0);
 	//arm->seta(false);
 	arm->reset();
-	//std::cout << "help" << std::endl;
+	std::cout << "help" << std::endl;
+
 
 }
 

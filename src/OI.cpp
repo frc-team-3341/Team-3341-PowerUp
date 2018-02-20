@@ -6,6 +6,7 @@
 #include "Commands/ArmSpeedPID.h"
 #include "Commands/ArmMin.h"
 #include "Commands/TestReset.h"
+#include "Commands/AutoArmMove.h"
 
 //#include "Commands/ArmMax.h"
 //#include "Commands/ArmMin.h"
@@ -21,10 +22,11 @@ armMax(new JoystickButton(armStick, 7))
 	armToggle->WhenPressed(new ArmPositionPID());
 	armToggle->WhenReleased(new ArmSpeedPID());
 
-	armMin->WhenPressed(new ArmMin());
+	armMin->ToggleWhenPressed(new ArmMin());
+
 	armMin->WhenReleased(new ArmSpeedPID());
 
-	armMax->WhenPressed(new TestReset());
+	armMax->ToggleWhenPressed(new AutoArmMove(50)); //degrees
 }
 
 Joystick* OI::getLeftStick()
