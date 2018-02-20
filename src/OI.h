@@ -1,6 +1,9 @@
 #ifndef OI_H
 #define OI_H
-#include "WPILib.h"
+
+#include <WPILib.h>
+
+#include <iostream>
 
 class OI {
 private:
@@ -12,6 +15,7 @@ private:
 	Button* getCrate;
 	Button* testButton;
 	Button* calibrateLift;
+	Button* positionPidTest;
 
 public:
 	OI();

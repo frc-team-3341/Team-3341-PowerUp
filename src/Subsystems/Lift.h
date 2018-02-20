@@ -21,7 +21,6 @@ public:
 	void move(double speed);
 	TalonSRX* getMotor();
 	float Limit(float num, float max);
-	double liftDistance();
 	void setHeight(double height);
 	double getHeight();
 	void resetEncoder();
@@ -29,6 +28,7 @@ public:
 	//WVPIDController* getHeightPid();
 	//WVPIDController* getLiftPositionPid();
 	double getPosition();
+
 };
 
 #endif  // Lift_H

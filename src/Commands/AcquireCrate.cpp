@@ -1,5 +1,5 @@
 #include "AcquireCrate.h"
-#include "CommandBase.h"
+#include "../CommandBase.h"
 
 AcquireCrate::AcquireCrate()
 {

@@ -9,7 +9,6 @@
 #include "Subsystems/Catcher.h"
 #include "OI.h"
 #include "Subsystems/DriveTrain.h"
-
 #include "Subsystems/Lift.h"
 
 
@@ -19,6 +18,7 @@
  * subsystem elsewhere in your code in your code use
  * CommandBase::exampleSubsystem
  */
+
 class CommandBase: public frc::Command {
 public:
 	CommandBase(const std::string& name);
