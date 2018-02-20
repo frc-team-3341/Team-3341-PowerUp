@@ -1,6 +1,7 @@
 #include "ArmSpeedPID.h"
 
-ArmSpeedPID::ArmSpeedPID() : speedPID(new WVPIDController(1, 0, 0, arm->getPosition(), false)) {
+ArmSpeedPID::ArmSpeedPID() //: speedPID(new WVPIDController(1, 0, 0, arm->getPosition(), false))
+{
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
 	Requires(arm);
@@ -17,8 +18,8 @@ void ArmSpeedPID::Execute() {
 	//if (!arm->whenyouarerunningabuttoncommanditistrue) {
 		//speedPID->SetSetPoint(oi->getArmStick()->GetY());
 		double targetSpeed = oi->getArmStick()->GetY();
-		double adjSpeed = speedPID->Tick(targetSpeed);
-		arm->move(adjSpeed);
+		//double adjSpeed = speedPID->Tick(targetSpeed);
+		arm->move(targetSpeed);
 		std::cout << "Position: " << arm->getPosition() << std::endl;
 
 }

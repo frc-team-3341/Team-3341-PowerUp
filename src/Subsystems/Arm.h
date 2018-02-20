@@ -16,6 +16,8 @@ private:
 	//Encoder* armEncoder;
 	double maxPosition;
 	double minPosition;
+	DigitalInput* lowLimit;
+	Counter* counter;
 
 public:
 	Arm();
@@ -29,6 +31,9 @@ public:
 	TalonSRX* getArmMotor();
 	double getMin();
 	double getMax();
+
+	bool IsSwitchSet();
+	void InitializeCounter();
 
 	//double test();
 	//bool whenyouarerunningabuttoncommanditistrue;

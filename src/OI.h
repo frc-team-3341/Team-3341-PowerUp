@@ -10,6 +10,7 @@ private:
 
 	Button* armMax;
 	Button* armMin;
+	Button* armToggle;
 public:
 	OI();
 	Joystick* getLeftStick();

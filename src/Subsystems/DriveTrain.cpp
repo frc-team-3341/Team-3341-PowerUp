@@ -100,7 +100,7 @@ double DriveTrain::leftDistance() { //inches
 	// double test = (double) (left->GetSensorCollection().GetPulseWidthPosition()); This also works, but I don't know what is different
 	double relativePosition = left->GetSensorCollection().GetQuadraturePosition(); // Return ticks
 	relativePosition = (relativePosition / 4096) * circumference; // 4096 ticks per revolution
-	std::cout<< "Left Wheel Relative Position: " << relativePosition << std::endl;
+	//std::cout<< "Left Wheel Relative Position: " << relativePosition << std::endl;
 	return relativePosition;
 }
 
@@ -109,7 +109,7 @@ double DriveTrain::rightDistance() { //inches
 	// double relativePosition = (double) (right->GetSensorCollection().GetPulseWidthPosition()); This also works, but I don't know what is different
 	double relativePosition = -(right->GetSensorCollection().GetQuadraturePosition()); // Negative sign makes sure that forwards is positive and backwards is negative
 	//relativePosition = relativePosition * circumference / 360;
-	std::cout<< "Right Wheel Relative Position: " << relativePosition << std::endl;
+	//std::cout<< "Right Wheel Relative Position: " << relativePosition << std::endl;
 	return relativePosition;
 
 

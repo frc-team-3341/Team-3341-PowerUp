@@ -1,6 +1,6 @@
 #include "ArmMax.h"
 
-ArmMax::ArmMax() : anglePID(new WVPIDController(1, 0, 0, arm->getMin(), false)) {
+ArmMax::ArmMax() : anglePID(new WVPIDController(1, 0, 0, arm->getMax(), false)) {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
 	Requires(arm);
@@ -19,7 +19,7 @@ void ArmMax::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool ArmMax::IsFinished() {
-	return anglePID->GetError() < 3;
+	return anglePID->GetError() < 2;
 }
 
 // Called once after isFinished returns true

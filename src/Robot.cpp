@@ -13,6 +13,7 @@ using namespace std;
 #include "Commands/DriveForward.h"
 #include "Commands/Turn.h"
 
+
 //#include <opencv2/imgproc/imgproc.hpp>
 //#include <opencv2/core/core.hpp>
 
@@ -45,6 +46,8 @@ public:
 		frc::SmartDashboard::PutData("Auto Modes", &chooser);
 
 		CameraServer::GetInstance()->StartAutomaticCapture();
+
+		SmartDashboard::PutNumber("help", 0);
 
 		//std::thread visionThread(VisionThread);
 			//        visionThread.detach();

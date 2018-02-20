@@ -2,12 +2,18 @@
 #include "../RobotMap.h"
 #include "../Commands/ArmSpeedPID.h"
 
-Arm::Arm() : Subsystem("Arm"), armMotor(new TalonSRX(ARMMOTOR)), minPosition(0)
+Arm::Arm() : Subsystem("Arm"), armMotor(new TalonSRX(ARMMOTOR)), minPosition(-84),
+maxPosition(minPosition + 370)
 {
 	//armEncoder->Reset();
 	armMotor->ConfigSelectedFeedbackSensor(FeedbackDevice::Analog, 0, 10);
 		// left->ConfigEncoderCodesPerRev(360);
 	armMotor->SetSelectedSensorPosition(0,0,10);
+
+	lowLimit = new DigitalInput(1);
+	counter = new Counter(lowLimit);
+
+
 }
 
 void Arm::InitDefaultCommand() {
@@ -18,11 +24,19 @@ void Arm::InitDefaultCommand() {
 
 void Arm::move(double power) {
 	armMotor->Set(ControlMode::PercentOutput, Arm::Limit(power, 0.5));
+	//armMotor->
+	//ControlMode test = armMotor->GetControlMode();
+
+
+	//if(test == ControlMode::Disabled)
+		//armMotor->SetInverted(true);
 }
 
 void Arm::reset()
 {
-	armMotor->SetSelectedSensorPosition(0,0,10);
+	armMotor->SetSelectedSensorPosition(0, 0, 10);
+	minPosition = getPosition();
+	std::cout << "min position" << minPosition << std::endl;
 }
 
 double Arm::getPosition() {
@@ -61,6 +75,16 @@ double Arm::getMax()
 	return maxPosition;
 }
 
+
+bool Arm::IsSwitchSet()
+{
+     return counter->Get() > 0;
+}
+
+void Arm::InitializeCounter()
+{
+     counter->Reset();
+}
 //void Arm::seta(bool ean) {
 	//whenyouarerunningabuttoncommanditistrue = ean;
 //}

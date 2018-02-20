@@ -20,9 +20,10 @@ CommandBase::CommandBase(const std::string &name) :
 void CommandBase::initialize() {
 
 	//oi = std::make_unique<OI>();
-	oi = new OI();
+
 	drive = new DriveTrain();
 	std::cout << "help me" << std::endl;
 	arm = new Arm();
+	oi = new OI();
 
 }

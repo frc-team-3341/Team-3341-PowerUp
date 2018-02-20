@@ -8,7 +8,7 @@
 class ArmSpeedPID : public CommandBase {
 
 private:
-	WVPIDController* speedPID;
+	//WVPIDController* speedPID;
 
 public:
 	ArmSpeedPID();
