@@ -10,7 +10,7 @@
 TestReset::TestReset() {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
-	Requires(arm);
+	Requires(CommandBase::arm);
 }
 
 // Called just before this Command runs the first time

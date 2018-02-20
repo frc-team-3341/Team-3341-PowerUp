@@ -8,7 +8,7 @@
 #pragma once
 
 #include <Commands/Command.h>
-
+#include "CommandBase.h"
 
 class TestReset : public CommandBase {
 public:

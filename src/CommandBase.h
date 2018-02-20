@@ -33,6 +33,7 @@ public:
 	static DriveTrain* drive;
 	static Catcher* catcher;
 	static Lift* lift;
+	static Arm * arm;
 
 };
 
