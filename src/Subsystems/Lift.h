@@ -4,7 +4,6 @@
 #include <Commands/Subsystem.h>
 #include "ctre/Phoenix.h"
 #include "RobotMap.h"
-
 #include <WPILib.h>
 #include "Utilities/WVPIDController.h"
 
@@ -21,7 +20,6 @@ public:
 	void move(double speed);
 	TalonSRX* getMotor();
 	float Limit(float num, float max);
-	double liftDistance();
 	void setHeight(double height);
 	double getHeight();
 	void resetEncoder();

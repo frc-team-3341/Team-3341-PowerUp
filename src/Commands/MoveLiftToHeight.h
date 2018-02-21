@@ -3,11 +3,15 @@
 
 #include "../CommandBase.h"
 #include "../Utilities/WVPIDController.h"
+#include <iostream>
+
+using namespace std;
 
 class MoveLiftToHeight : public CommandBase {
 private:
 	double targetHeight;
 	WVPIDController* heightPid;
+	int timeCount;
 
 public:
 	MoveLiftToHeight(double height);

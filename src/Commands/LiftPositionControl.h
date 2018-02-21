@@ -4,12 +4,14 @@
 #include "../CommandBase.h"
 #include "Utilities/WVPIDController.h"
 #include <iostream>
+#include <WPILib.h>
+
 using namespace std;
 
 class LiftPositionControl : public CommandBase {
 private:
 	WVPIDController* liftPositionPid;
-	double absolutePosition;
+	double relativePosition;
 	double speed;
 
 public:

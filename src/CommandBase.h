@@ -21,13 +21,13 @@
  * subsystem elsewhere in your code in your code use
  * CommandBase::exampleSubsystem
  */
+
 class CommandBase: public frc::Command {
 public:
 	CommandBase(const std::string& name);
 	CommandBase() = default;
 	static void initialize();
 
-	// Create a single static instance of all of your subsystems
 
 	static std::unique_ptr<OI> oi;
 	static DriveTrain* drive;

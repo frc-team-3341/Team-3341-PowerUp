@@ -1,21 +1,25 @@
 #ifndef OI_H
 #define OI_H
-#include "WPILib.h"
+
+#include <WPILib.h>
+
+#include <iostream>
 
 class OI {
 private:
 	Joystick* leftStick;
 	Joystick* rightStick;
-
-	Joystick* armStick;
-
 	Joystick* liftStick;
 
 	Button* shootCrate;
 	Button* getCrate;
 	Button* testButton;
 	Button* calibrateLift;
+	Button* positionPidTest;
 
+	Joystick* armStick;
+
+	Joystick* liftStick;
 
 	Button* armMax;
 	Button* armMin;

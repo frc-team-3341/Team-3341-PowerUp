@@ -2,7 +2,8 @@
 
 MoveLiftToHeight::MoveLiftToHeight(double height) :
 targetHeight(height),
-heightPid(new WVPIDController(1, 0, 0, height, false))
+heightPid(new WVPIDController(1, 0, 0, height, false)),
+timeCount(0)
 {
 	Requires(lift);
 }
@@ -16,6 +17,9 @@ void MoveLiftToHeight::Initialize() {
 void MoveLiftToHeight::Execute()
 {
 	double power = heightPid->Tick(lift->getHeight());
+	timeCount++;
+	cout << "timeCount = " << timeCount << endl;
+	cout << "lift height = " << lift->getHeight() << endl;
 	lift->move(power);
 }
 

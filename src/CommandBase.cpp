@@ -8,13 +8,11 @@
 // Initialize a single static instance of all of your subsystems. The following
 // line should be repeated for each subsystem in the project.
 
-
-
 DriveTrain* CommandBase::drive = nullptr;
 Catcher* CommandBase::catcher = nullptr;
 Lift* CommandBase::lift = nullptr;
+Arm* CommandBase::arm = nullptr;
 std::unique_ptr<OI> CommandBase::oi;
-
 
 
 CommandBase::CommandBase(const std::string &name) :
@@ -33,8 +31,9 @@ void CommandBase::initialize()
 	std::cout << "catcher constructor completed" << std::endl;
 	lift = new Lift();
 	std::cout << "lift constructor completed" << std::endl;
+	arm = new Arm();
+	std::cout << "lift constructor completed" << std::endl;
 	oi = std::make_unique<OI>();
 	std::cout << "commandBase initialize completed" << std::endl;
-
 
 }

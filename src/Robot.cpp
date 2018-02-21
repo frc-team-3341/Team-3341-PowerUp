@@ -12,9 +12,10 @@
 #include "Commands/TankDrive.h"
 #include "Commands/DriveForward.h"
 #include "Commands/Turn.h"
-
+#include "Commands/MoveLiftToMinHeight.h"
 
 using namespace std;
+
 
 
 
@@ -41,7 +42,9 @@ public:
 		CommandBase::initialize();
 
 		std::cout<<"RobotInit Successful"<< std::endl;
-		chooser.AddDefault("Default Auto", new DriveForward(10));
+		//chooser.AddDefault("Default Auto", new DriveForward(10));
+		//chooser.AddObject("Calibrate lift", new MoveLiftToMinHeight());
+		SmartDashboard::PutData("Calibrate lift", new MoveLiftToMinHeight());
 
 		// chooser.AddObject("My Auto", new MyAutoCommand());
 		frc::SmartDashboard::PutData("Auto Modes", &chooser);
