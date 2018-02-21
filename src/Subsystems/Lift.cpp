@@ -5,7 +5,7 @@
 
 Lift::Lift() : Subsystem("Lift"),
 motor(new TalonSRX(LIFT_MOTOR)),
-ticksPerDistance(8294),
+ticksPerDistance(4096),
 liftHeight(0)
 {
 	motor->ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Relative,0,10);
@@ -22,11 +22,9 @@ void Lift::InitDefaultCommand() {
 
 void Lift::move(double speed)
 {
+	liftHeight += Lift::liftDistance();
 	SmartDashboard::PutNumber("liftHeight",liftHeight);
 	motor->Set(ControlMode::PercentOutput,Lift::Limit(speed, 0.5));
-	std::cout << "Lift encoder position = " << getPosition() << std::endl;
-	//std::cout << "rev limit switch triggered?" << motor->GetSensorCollection().IsRevLimitSwitchClosed() << std::endl;
-	//std::cout << "fwd limit switch triggered?" << motor->GetSensorCollection().IsFwdLimitSwitchClosed() << std::endl;
 }
 
 TalonSRX* Lift::getMotor()
@@ -43,6 +41,15 @@ float Lift::Limit(float num, float max) {
 	return num;
 }
 
+double Lift::liftDistance() { //inches
+	double relativePosition = motor->GetSensorCollection().GetQuadraturePosition(); // Return ticks
+	double revolutions = relativePosition/4096;
+	double distance = (relativePosition / ticksPerDistance); // 4096 ticks per revolution
+	//std::cout<< "Lift Relative Position: " << relativePosition << std::endl;
+	return distance;
+
+}
+
 void Lift::setHeight(double height)
 {
 	liftHeight = height;
@@ -50,10 +57,6 @@ void Lift::setHeight(double height)
 
 double Lift::getHeight()
 {
-	double relativePosition = motor->GetSensorCollection().GetQuadraturePosition(); // Return ticks
-	double revolutions = relativePosition/4096;
-	liftHeight = (-relativePosition/ticksPerDistance); // 4096 ticks per revolution
-	//std::cout<< "Lift Relative Position: " << relativePosition << std::endl;
 	return liftHeight;
 }
 

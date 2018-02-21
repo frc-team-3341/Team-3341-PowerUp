@@ -7,11 +7,12 @@
 
 #include "AutoArmMove.h"
 
+
 AutoArmMove::AutoArmMove(double target) :
 anglePID(new WVPIDController(0.9, 0, 0, target, false)) {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
-	Requires(arm);
+	Requires(CommandBase::arm);
 }
 
 // Called just before this Command runs the first time
