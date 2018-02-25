@@ -19,8 +19,9 @@ DriveTrain::DriveTrain() : Subsystem("DriveTrain"), left(new TalonSRX(LEFTMOTOR)
 	std::cout<<"DriveTrain Constructor Successful" <<std::endl;
 	right->SetInverted(true);
 
-	gyro->Reset();
 	gyro->Calibrate();
+	gyro->Reset();
+
 
 
 }
@@ -45,8 +46,8 @@ double DriveTrain::Limit(double num, double max) {
 }
 
 void DriveTrain::tankDrive(double leftVal, double rightVal) {
-	left->Set(ControlMode::PercentOutput, DriveTrain::Limit(-leftVal, 0.5));
-	right->Set(ControlMode::PercentOutput, DriveTrain::Limit(-rightVal, 0.5));
+	left->Set(ControlMode::PercentOutput, DriveTrain::Limit(-leftVal, 1.0));
+	right->Set(ControlMode::PercentOutput, DriveTrain::Limit(-rightVal, 1.0));
 }
 
 void DriveTrain::arcadeDrive(double moveVal, double rotateVal) {
@@ -96,11 +97,33 @@ void DriveTrain::gyroReset() {
 	gyro->Calibrate();
 }
 
+void DriveTrain::gyroCalibrate(){
+	gyro->Calibrate();
+}
+
+void DriveTrain::resetEncoders(){
+	left->SetSelectedSensorPosition(0,0,10);
+	right->SetSelectedSensorPosition(0,0,10);
+}
+
+/* DriveTrain::setStartAbsTicks(){
+	startAbsTicks = left->GetSensorCollection().GetPulseWidthPosition();
+	cout << "Start: " << startAbsTicks << endl;
+}*/
+
 double DriveTrain::leftDistance() { //inches
-	// double test = (double) (left->GetSensorCollection().GetPulseWidthPosition()); This also works, but I don't know what is different
+
+	double test = left->GetSensorCollection().GetPulseWidthPosition();
 	double relativePosition = left->GetSensorCollection().GetQuadraturePosition(); // Return ticks
-	relativePosition = (relativePosition / 4096) * circumference; // 4096 ticks per revolution
-	//std::cout<< "Left Wheel Relative Position: " << relativePosition << std::endl;
+
+	relativePosition = ((relativePosition) / 4096) * circumference; // 4096 ticks per revolution
+	//cout << "Abs: " << test << endl;
+	test = ((test)/ 4096) * circumference;
+
+	//cout << "Start: " << startAbsTicks << endl;
+	//cout<< "Relative Position: " << relativePosition <<std::endl;
+	//cout<< "Absolute Position: " << test <<std::endl;
+
 	return relativePosition;
 }
 
@@ -108,9 +131,16 @@ double DriveTrain::rightDistance() { //inches
 
 	// double relativePosition = (double) (right->GetSensorCollection().GetPulseWidthPosition()); This also works, but I don't know what is different
 	double relativePosition = -(right->GetSensorCollection().GetQuadraturePosition()); // Negative sign makes sure that forwards is positive and backwards is negative
-	//relativePosition = relativePosition * circumference / 360;
-	//std::cout<< "Right Wheel Relative Position: " << relativePosition << std::endl;
+	relativePosition = (relativePosition / 4096) * circumference; // 4096 ticks per revolution
+	// std::cout<< "Right Wheel Relative Position: " << relativePosition << std::endl;
 	return relativePosition;
 
 
 }
+
+double DriveTrain::getSpeed(){
+	return ((left->GetSensorCollection().GetPulseWidthVelocity()*10)/4096);
+	//return left()*(10/4096) * circumference;
+}
+// Put methods for controlling this subsystem
+// here. Call these from Commands.

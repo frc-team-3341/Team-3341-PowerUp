@@ -4,10 +4,7 @@
 #include <Commands/Subsystem.h>
 #include "WPILib.h"
 #include "ctre/Phoenix.h"
-
 #include "math.h"
-#include "RobotMap.h"
-
 
 class DriveTrain : public Subsystem {
 private:
@@ -24,13 +21,16 @@ public:
 	void InitDefaultCommand();
 	void tankDrive(double leftVal, double rightVal);
 	void arcadeDrive(double moveVal, double rotateVal);
-
 	double Limit(double num, double max);
 	double getAngle();
+	double getSpeed();
 	void gyroReset();
 	double leftDistance(); //inches
 	double rightDistance(); //inches
-
+	void resetEncoders();
+	void gyroCalibrate();
+	//double startAbsTicks;
+	//void setStartAbsTicks();
 
 };
 

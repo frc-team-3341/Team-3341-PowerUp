@@ -9,7 +9,7 @@ TankDrive::TankDrive() {
 
 // Called just before this Command runs the first time
 void TankDrive::Initialize() {
-
+	drive->resetEncoders();
 }
 
 // Called repeatedly when this Command is scheduled to run
