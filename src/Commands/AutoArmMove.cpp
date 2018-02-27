@@ -26,7 +26,7 @@ void AutoArmMove::Execute()
 {
 	double measuredVal = arm->getPosition();
 	double adjPower = anglePID->Tick(measuredVal);
-	arm->move(-adjPower);
+	arm->move(adjPower);
 	std::cout << "measured encoder value: " << measuredVal << std::endl;
 }
 

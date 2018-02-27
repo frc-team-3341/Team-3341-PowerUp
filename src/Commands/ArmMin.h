@@ -8,7 +8,7 @@ class ArmMin : public CommandBase {
 
 private:
 	//WVPIDController* anglePID;
-	double temp;
+	//double temp;
 
 public:
 	ArmMin();

@@ -23,7 +23,7 @@ void ArmPositionPID::Execute() {
 	double currentPosition = arm->getPosition();
 	speed = armPositionPid->Tick(currentPosition);
 	std::cout << "speed: " << speed << "error value: " << armPositionPid->GetError() << std::endl;
-	arm->move(arm->Limit(-speed,0.5));
+	arm->move(arm->Limit(speed,0.5));
 
 	//double targetSpeed = oi->getArmStick()->GetY();
 	//double adjSpeed = speedPID->Tick(targetSpeed);

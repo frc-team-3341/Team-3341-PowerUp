@@ -2,10 +2,11 @@
 #include "../RobotMap.h"
 #include "../Commands/MoveLift.h"
 #include <iostream>
+using namespace std;
 
 Lift::Lift() : Subsystem("Lift"),
 motor(new TalonSRX(LIFT_MOTOR)),
-ticksPerDistance(4096),
+ticksPerDistance(8294),
 liftHeight(0)
 {
 	motor->ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Relative,0,10);
@@ -24,7 +25,7 @@ void Lift::move(double speed)
 {
 	liftHeight += Lift::liftDistance();
 	SmartDashboard::PutNumber("liftHeight",liftHeight);
-	motor->Set(ControlMode::PercentOutput,Lift::Limit(speed, 0.5));
+	motor->Set(ControlMode::PercentOutput, speed);
 }
 
 TalonSRX* Lift::getMotor()
