@@ -10,15 +10,18 @@ private:
 	Joystick* armStick;
 
 	Joystick* liftStick;
-	XboxController* xbox;
 
 	Button* shootCrate;
 	Button* getCrate;
 	Button* testButton;
 	Button* calibrateLift;
+<<<<<<< HEAD
 	Button* cameraLeft;
 	Button* cameraRight;
 	Button* liftPositionPID;
+=======
+
+>>>>>>> f871e26bd93e9da592faeba542a495548a2b554b
 
 	Button* armMax;
 	Button* armMin;
@@ -31,7 +34,6 @@ public:
 	Joystick* getArmStick();
 
 	Joystick* getLiftStick();
-	XboxController* getXbox();
 
 };
 

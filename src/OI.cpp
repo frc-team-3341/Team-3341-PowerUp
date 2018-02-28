@@ -18,18 +18,27 @@ OI::OI() : leftStick(new Joystick(0)),
 rightStick(new Joystick(1)),
 liftStick(new Joystick(3)), armStick(new Joystick(2)),
 armToggle(new JoystickButton(armStick, 1)), armMin(new JoystickButton(armStick, 3)),
+<<<<<<< HEAD
 armMax(new JoystickButton(armStick, 7)), cameraLeft(new JoystickButton(leftStick, 2)),
 cameraRight(new JoystickButton(rightStick, 2)),
 xbox(new XboxController(4))
+=======
+armMax(new JoystickButton(armStick, 7))
+>>>>>>> f871e26bd93e9da592faeba542a495548a2b554b
 
 {
-		shootCrate = new JoystickButton(armStick, 4);
+		shootCrate = new JoystickButton(leftStick, 1);
 		shootCrate->WhenPressed(new ReleaseCrate());
 		shootCrate->WhenReleased(new StopCatcher());
 
+<<<<<<< HEAD
 cameraLeft->WhenPressed(new moveCameraLeft());
 cameraRight->WhenPressed(new moveCameraRight());
 		getCrate = new JoystickButton(armStick, 2);
+=======
+
+		getCrate = new JoystickButton(leftStick, 2);
+>>>>>>> f871e26bd93e9da592faeba542a495548a2b554b
 		getCrate->WhenPressed(new AcquireCrate());
 		getCrate->WhenReleased(new StopCatcher());
 
@@ -46,13 +55,10 @@ cameraRight->WhenPressed(new moveCameraRight());
 
 	armMax->WhenPressed(new TestReset());
 
-	testButton = new JoystickButton(liftStick,3);
-	calibrateLift = new JoystickButton(liftStick,4);
-	testButton->WhenPressed(new MoveLiftToHeight(10));
+	testButton = new JoystickButton(liftStick,1);
+	calibrateLift = new JoystickButton(liftStick,3);
+	testButton->WhenPressed(new MoveLiftToHeight(4));
 	calibrateLift->WhenPressed(new MoveLiftToMinHeight());
-
-	liftPositionPID = new JoystickButton(liftStick, 2);
-	liftPositionPID->WhenPressed(new LiftPositionControl());
 
 	armMax->ToggleWhenPressed(new AutoArmMove(50)); //degrees
 
@@ -78,7 +84,4 @@ Joystick* OI::getLiftStick()
 	return liftStick;
 }
 
-XboxController* OI::getXbox()
-{
-	return xbox;
-}
+

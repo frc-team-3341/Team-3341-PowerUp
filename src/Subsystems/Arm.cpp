@@ -23,7 +23,7 @@ void Arm::InitDefaultCommand() {
 }
 
 void Arm::move(double power) {
-	armMotor->Set(ControlMode::PercentOutput, -Arm::Limit(power, 0.5));
+	armMotor->Set(ControlMode::PercentOutput, Arm::Limit(power, 0.5));
 	//armMotor->
 	//ControlMode test = armMotor->GetControlMode();
 
