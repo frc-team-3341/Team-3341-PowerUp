@@ -16,7 +16,8 @@ private:
 	Button* getCrate;
 	Button* testButton;
 	Button* calibrateLift;
-
+	Button* cameraLeft;
+	Button* cameraRight;
 	Button* liftPositionPID;
 
 	Button* armMax;

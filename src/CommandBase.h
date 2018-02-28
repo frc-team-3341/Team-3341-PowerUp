@@ -11,7 +11,7 @@
 #include "OI.h"
 #include "Subsystems/DriveTrain.h"
 #include "Subsystems/Arm.h"
-
+#include "Subsystems/Camera.h"
 #include "Subsystems/Lift.h"
 
 
@@ -30,6 +30,7 @@ public:
 	// Create a single static instance of all of your subsystems
 
 	static std::unique_ptr<OI> oi;
+	static Camera* camera;
 	static Arm* arm;
 	static DriveTrain* drive;
 	static Catcher* catcher;

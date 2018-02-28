@@ -18,6 +18,7 @@ constexpr int ARMMOTOR = 5;
 constexpr int LIFT_MOTOR = 4;
 constexpr int CATCH_LEFT_CAN_ID = 6; //actually 3
 constexpr int CATCH_RIGHT_CAN_ID = 7; //actually 2
+constexpr int CAMERA_CHANNEL = 0;
 
 
 // If you are using multiple modules, make sure to define both the port

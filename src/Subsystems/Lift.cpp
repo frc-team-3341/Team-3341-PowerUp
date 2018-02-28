@@ -3,7 +3,7 @@
 #include "../Commands/MoveLift.h"
 #include <iostream>
 using namespace std;
-
+#include "ctre/Phoenix.h"
 Lift::Lift() : Subsystem("Lift"),
 motor(new TalonSRX(LIFT_MOTOR)),
 ticksPerDistance(8294),
