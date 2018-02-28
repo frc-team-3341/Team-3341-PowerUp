@@ -16,7 +16,7 @@ void MoveLiftToHeight::Initialize() {
 void MoveLiftToHeight::Execute()
 {
 	double power = heightPid->Tick(lift->getHeight());
-	lift->move(lift->Limit(power, 0.5));
+	lift->move(power);
 }
 
 // Make this return true when this Command no longer needs to run execute()

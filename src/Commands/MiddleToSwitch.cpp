@@ -1,12 +1,26 @@
-#include "SameSideSwitch.h"
-#include "Commands/DriveForward.h"
+#include "MiddleToSwitch.h"
 #include "Commands/Turn.h"
-SameSideSwitch::SameSideSwitch() {
+#include "Commands/DriveForward.h"
+
+MiddleToSwitch::MiddleToSwitch(char Pos) {
+
+	if (Pos == 'L'){
+		AddSequential(new DriveForward(55));
+		AddSequential(new Turn(-90));
+		AddSequential(new DriveForward(59));
+		AddSequential(new Turn(90));
+		AddSequential(new DriveForward(66));
+	}
+
+	else if (Pos == 'R') {
+		AddSequential(new DriveForward(55));
+		AddSequential(new Turn(90));
+		AddSequential(new DriveForward(49));
+		AddSequential(new Turn(-90));
+		AddSequential(new DriveForward(66));
+	}
 	// Add Commands here:
 	// e.g. AddSequential(new Command1());
-	AddSequential(new DriveForward(149)); //Travels 164 inches
-	AddSequential(new Turn(90.0)); // Turns 90 deg
-	AddSequential(new DriveForward(19.56)); // Travels 42 inches
 
 	// these will run in order.
 

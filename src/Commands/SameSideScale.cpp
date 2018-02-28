@@ -1,12 +1,13 @@
-#include "SameSideSwitch.h"
-#include "Commands/DriveForward.h"
+#include "SameSideScale.h"
 #include "Commands/Turn.h"
-SameSideSwitch::SameSideSwitch() {
+#include "Commands/DriveForward.h"
+
+
+SameSideScale::SameSideScale() {
 	// Add Commands here:
 	// e.g. AddSequential(new Command1());
-	AddSequential(new DriveForward(149)); //Travels 164 inches
-	AddSequential(new Turn(90.0)); // Turns 90 deg
-	AddSequential(new DriveForward(19.56)); // Travels 42 inches
+	AddSequential(new DriveForward(324));
+	//AddSequential(new Turn(90));
 
 	// these will run in order.
 
