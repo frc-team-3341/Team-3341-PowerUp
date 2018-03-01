@@ -19,7 +19,7 @@ void ArmSpeedPID::Execute() {
 		//speedPID->SetSetPoint(oi->getArmStick()->GetY());
 		double targetSpeed = oi->getArmStick()->GetY();
 		//double adjSpeed = speedPID->Tick(targetSpeed);
-		arm->move(targetSpeed);
+		arm->move(-targetSpeed);
 		std::cout << "Position: " << arm->getPosition() << std::endl;
 
 }

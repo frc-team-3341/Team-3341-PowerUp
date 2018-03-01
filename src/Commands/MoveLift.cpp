@@ -14,7 +14,7 @@ void MoveLift::Initialize() {
 void MoveLift::Execute() {
 	liftVal = oi->getLiftStick()->GetY();
 	//TODO: Add limit function for the actual mechanism but it is omitted for testing
-	lift->move(liftVal);
+	lift->move(-liftVal);
 }
 
 // Make this return true when this Command no longer needs to run execute()

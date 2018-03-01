@@ -22,9 +22,9 @@ void Lift::InitDefaultCommand() {
 
 void Lift::move(double speed)
 {
-	liftHeight += Lift::liftDistance();
+	liftHeight += Lift::getHeight();
 	SmartDashboard::PutNumber("liftHeight",liftHeight);
-	motor->Set(ControlMode::PercentOutput,Lift::Limit(speed, 0.5));
+	motor->Set(ControlMode::PercentOutput,-Lift::Limit(speed, 1));
 }
 
 TalonSRX* Lift::getMotor()
@@ -41,14 +41,14 @@ float Lift::Limit(float num, float max) {
 	return num;
 }
 
-double Lift::liftDistance() { //inches
+/**double Lift::liftDistance() { //inches
 	double relativePosition = motor->GetSensorCollection().GetQuadraturePosition(); // Return ticks
 	double revolutions = relativePosition/4096;
 	double distance = (relativePosition / ticksPerDistance); // 4096 ticks per revolution
 	//std::cout<< "Lift Relative Position: " << relativePosition << std::endl;
 	return distance;
 
-}
+}*/
 
 void Lift::setHeight(double height)
 {
@@ -57,6 +57,10 @@ void Lift::setHeight(double height)
 
 double Lift::getHeight()
 {
+	double relativePosition = motor->GetSensorCollection().GetQuadraturePosition(); // Return ticks
+	double revolutions = relativePosition/4096;
+	liftHeight = (relativePosition / ticksPerDistance); // 4096 ticks per revolution
+		//std::cout<< "Lift Relative Position: " << relativePosition << std::endl;
 	return liftHeight;
 }
 

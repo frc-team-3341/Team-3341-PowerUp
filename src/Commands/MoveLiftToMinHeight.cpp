@@ -13,12 +13,13 @@ void MoveLiftToMinHeight::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void MoveLiftToMinHeight::Execute() {
-	lift->move(-0.1);
+	lift->move(-0.4);
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool MoveLiftToMinHeight::IsFinished() {
-	if(lift->getMotor()->GetMotorOutputPercent() == 0)
+	std::cout << "hello   " << lift->getMotor()->GetSensorCollection().IsRevLimitSwitchClosed();
+	if(lift->getMotor()->GetSensorCollection().IsRevLimitSwitchClosed() == 1)
 		return true;
 	else
 		return false;

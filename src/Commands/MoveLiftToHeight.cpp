@@ -16,6 +16,7 @@ void MoveLiftToHeight::Initialize() {
 void MoveLiftToHeight::Execute()
 {
 	double power = heightPid->Tick(lift->getHeight());
+	std::cout << "power: " << power << std::endl;
 	lift->move(power);
 }
 

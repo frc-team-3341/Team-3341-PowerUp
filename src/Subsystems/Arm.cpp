@@ -13,6 +13,8 @@ maxPosition(minPosition + 370)
 	lowLimit = new DigitalInput(1);
 	counter = new Counter(lowLimit);
 
+	armMotor->SetInverted(false);
+
 
 }
 
@@ -23,7 +25,7 @@ void Arm::InitDefaultCommand() {
 }
 
 void Arm::move(double power) {
-	armMotor->Set(ControlMode::PercentOutput, Arm::Limit(power, 0.5));
+	armMotor->Set(ControlMode::PercentOutput, Arm::Limit(power, 1));
 	//armMotor->
 	//ControlMode test = armMotor->GetControlMode();
 
