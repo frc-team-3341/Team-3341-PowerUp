@@ -2,10 +2,10 @@
 #include "../RobotMap.h"
 
 Catcher::Catcher(): Subsystem("Catcher"),
-catcherLeft(new TalonSRX(CATCH_LEFT_CAN_ID)),
-catcherRight(new TalonSRX(CATCH_RIGHT_CAN_ID))
+catcherLeft(new TalonSRX(CATCH_LEFT_CAN_ID)), catcherRight(new TalonSRX(CATCH_RIGHT_CAN_ID))
 {
 	enabled = false;
+
 }
 
 Catcher::~Catcher()

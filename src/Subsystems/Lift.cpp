@@ -2,7 +2,12 @@
 #include "../RobotMap.h"
 #include "../Commands/MoveLift.h"
 #include <iostream>
+<<<<<<< HEAD
+using namespace std;
+#include "ctre/Phoenix.h"
+=======
 
+>>>>>>> f871e26bd93e9da592faeba542a495548a2b554b
 Lift::Lift() : Subsystem("Lift"),
 motor(new TalonSRX(LIFT_MOTOR)),
 ticksPerDistance(4096),

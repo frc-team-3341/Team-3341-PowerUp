@@ -11,20 +11,27 @@
 #include "Commands/ArmMin.h"
 #include "Commands/TestReset.h"
 #include "Commands/AutoArmMove.h"
+#include "Commands/moveCameraLeft.h"
+#include "Commands/moveCameraRight.h"
 
 OI::OI() : leftStick(new Joystick(0)),
 rightStick(new Joystick(1)),
 liftStick(new Joystick(3)), armStick(new Joystick(2)),
-armToggle(new JoystickButton(armStick, 1)), armMin(new JoystickButton(armStick, 9)),
-armMax(new JoystickButton(armStick, 7))
 
+armToggle(new JoystickButton(armStick, 1)), armMin(new JoystickButton(armStick, 9)),
+armMax(new JoystickButton(armStick, 7)), cameraLeft(new JoystickButton(leftStick, 2)),
+cameraRight(new JoystickButton(rightStick, 2)),
+xbox(new XboxController(4))
 {
-		shootCrate = new JoystickButton(armStick, 3);
+		shootCrate = new JoystickButton(armStick, 4);
 		shootCrate->WhenPressed(new ReleaseCrate());
 		shootCrate->WhenReleased(new StopCatcher());
 
 
-		getCrate = new JoystickButton(armStick, 4);
+cameraLeft->WhenPressed(new moveCameraLeft());
+cameraRight->WhenPressed(new moveCameraRight());
+		getCrate = new JoystickButton(armStick, 2);
+
 		getCrate->WhenPressed(new AcquireCrate());
 		getCrate->WhenReleased(new StopCatcher());
 

@@ -9,7 +9,7 @@
 // line should be repeated for each subsystem in the project.
 
 
-
+Camera* CommandBase::camera = nullptr;
 DriveTrain* CommandBase::drive = nullptr;
 Catcher* CommandBase::catcher = nullptr;
 Lift* CommandBase::lift = nullptr;
@@ -36,6 +36,8 @@ void CommandBase::initialize()
 	std::cout << "lift constructor completed" << std::endl;
 	arm = new Arm();
 	std::cout << "arm constructor completed" << std::endl;
+	camera = new Camera();
+	std::cout << "camera constructor completed" << std::endl;
 	oi = std::make_unique<OI>();
 	std::cout << "commandBase initialize completed" << std::endl;
 

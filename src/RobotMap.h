@@ -15,9 +15,12 @@ constexpr int LEFTMOTOR = 3;
 constexpr int RIGHTMOTOR = 2;
 
 constexpr int ARMMOTOR = 5;
-constexpr int LIFT_MOTOR = 4; //WE KNOW THIS IS NOT CORRECT...
+
+
+constexpr int LIFT_MOTOR = 4;
 constexpr int CATCH_LEFT_CAN_ID = 6; //actually 3
 constexpr int CATCH_RIGHT_CAN_ID = 7; //actually 2
+constexpr int CAMERA_CHANNEL = 0;
 
 constexpr double error = 6; // fill this in later
 constexpr double To_Switch = 168 - 19 + error;
