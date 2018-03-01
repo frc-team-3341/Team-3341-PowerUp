@@ -20,8 +20,7 @@ liftStick(new Joystick(3)), armStick(new Joystick(2)),
 
 armToggle(new JoystickButton(armStick, 1)), armMin(new JoystickButton(armStick, 9)),
 armMax(new JoystickButton(armStick, 7)), cameraLeft(new JoystickButton(leftStick, 2)),
-cameraRight(new JoystickButton(rightStick, 2)),
-xbox(new XboxController(4))
+cameraRight(new JoystickButton(rightStick, 2))
 {
 		shootCrate = new JoystickButton(armStick, 4);
 		shootCrate->WhenPressed(new ReleaseCrate());
