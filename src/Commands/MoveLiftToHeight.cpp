@@ -17,7 +17,7 @@ void MoveLiftToHeight::Execute()
 {
 	double power = heightPid->Tick(lift->getHeight());
 	std::cout << "power: " << power << std::endl;
-	lift->move(power);
+	lift->move(lift->Limit(power, 0.6));
 }
 
 // Make this return true when this Command no longer needs to run execute()

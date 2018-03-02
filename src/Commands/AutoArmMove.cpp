@@ -9,7 +9,7 @@
 
 
 AutoArmMove::AutoArmMove(double target) :
-anglePID(new WVPIDController(0.9, 0, 0, target, false)) {
+anglePID(new WVPIDController(0.01, 0, 0, target, false)) {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
 	Requires(CommandBase::arm);

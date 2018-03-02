@@ -1,6 +1,6 @@
 #include "ArmMax.h"
 
-ArmMax::ArmMax() : anglePID(new WVPIDController(1, 0, 0, arm->getMax(), false)) {
+ArmMax::ArmMax() : anglePID(new WVPIDController(0.01, 0, 0, arm->getMax(), false)) {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
 	Requires(arm);

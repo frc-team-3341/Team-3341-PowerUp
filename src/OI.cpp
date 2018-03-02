@@ -22,15 +22,15 @@ armToggle(new JoystickButton(armStick, 1)), armMin(new JoystickButton(armStick, 
 armMax(new JoystickButton(armStick, 7)), cameraLeft(new JoystickButton(leftStick, 2)),
 cameraRight(new JoystickButton(rightStick, 2))
 {
-		shootCrate = new JoystickButton(armStick, 4);
+		shootCrate = new JoystickButton(armStick, 3);
 		shootCrate->WhenPressed(new ReleaseCrate());
 		shootCrate->WhenReleased(new StopCatcher());
 
 
-cameraLeft->WhenPressed(new moveCameraLeft());
-cameraRight->WhenPressed(new moveCameraRight());
-		getCrate = new JoystickButton(armStick, 2);
+	//	cameraLeft->WhenPressed(new moveCameraLeft());
+		//cameraRight->WhenPressed(new moveCameraRight());
 
+		getCrate = new JoystickButton(armStick, 4);
 		getCrate->WhenPressed(new AcquireCrate());
 		getCrate->WhenReleased(new StopCatcher());
 
@@ -45,11 +45,11 @@ cameraRight->WhenPressed(new moveCameraRight());
 
 	armMin->WhenReleased(new ArmSpeedPID());
 
-	armMax->WhenPressed(new TestReset());
+	//armMax->WhenPressed(new TestReset());
 
 	testButton = new JoystickButton(liftStick,1);
 	calibrateLift = new JoystickButton(liftStick,3);
-	testButton->WhenPressed(new MoveLiftToHeight(4));
+	testButton->WhenPressed(new MoveLiftToHeight(10));
 	calibrateLift->WhenPressed(new MoveLiftToMinHeight());
 
 	armMax->ToggleWhenPressed(new AutoArmMove(50)); //degrees

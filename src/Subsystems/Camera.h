@@ -19,6 +19,7 @@ private:
 
 public:
 	Camera();
+	~Camera();
 	void InitDefaultCommand() override;
 	void moveLeft();
 	void moveRight();

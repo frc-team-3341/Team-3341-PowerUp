@@ -12,6 +12,11 @@ Camera::Camera() : Subsystem("ExampleSubsystem"), camera(new Servo(CAMERA_CHANNE
 
 }
 
+Camera::~Camera()
+{
+	delete camera;
+}
+
 void Camera::InitDefaultCommand() {
 	// Set the default command for a subsystem here.
 	// SetDefaultCommand(new MySpecialCommand());
