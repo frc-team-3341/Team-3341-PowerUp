@@ -5,15 +5,21 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "Mid.h"
-#include "Auto_Mid_LSwitch.h"
-#include "Auto_Mid_RSwitch.h"
-#include <iostream>
+#pragma once
 
-Mid::Mid(std::string s) {
-	if(s[0] == 'L'){
-		AddSequential(new Auto_Mid_LSwitch());
-	}
-	else
-		AddSequential(new Auto_Mid_RSwitch());
-}
+#include <Commands/Command.h>
+#include "../CommandBase.h"
+
+class ResetLiftEnc : public CommandBase {
+private:
+	double timer;
+
+public:
+	ResetLiftEnc(double timeout);
+	void Initialize() override;
+	void Execute() override;
+	bool IsFinished() override;
+	void End() override;
+	void Interrupted() override;
+};
+

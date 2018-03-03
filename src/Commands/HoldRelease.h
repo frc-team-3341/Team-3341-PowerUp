@@ -8,9 +8,12 @@
 #pragma once
 
 #include <Commands/CommandGroup.h>
+#include "../CommandBase.h"
+#include "ReleaseCrate.h"
+#include "ArmPositionPID.h"
 
-class LSwitch : public frc::CommandGroup {
+class HoldRelease : public frc::CommandGroup {
 public:
-	LSwitch(std::string s);
+	HoldRelease();
 };
 

@@ -9,8 +9,8 @@
 
 #include <Commands/CommandGroup.h>
 
-class Test_Mechs : public frc::CommandGroup {
+class TurnTest : public frc::CommandGroup {
 public:
-	Test_Mechs();
+	TurnTest();
 };
 

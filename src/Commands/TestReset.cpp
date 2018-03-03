@@ -5,37 +5,37 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "moveCameraRight.h"
+#include "TestReset.h"
 
-moveCameraRight::moveCameraRight() {
+TestReset::TestReset() {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
-	Requires(camera);
+	Requires(arm);
 }
 
-
 // Called just before this Command runs the first time
-void moveCameraRight::Initialize() {
+void TestReset::Initialize() {
 
 }
 
 // Called repeatedly when this Command is scheduled to run
-void moveCameraRight::Execute() {
-camera->moveRight();
+void TestReset::Execute()
+{
+	arm->reset();
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool moveCameraRight::IsFinished() {
-	return false;
+bool TestReset::IsFinished() {
+	return true;
 }
 
 // Called once after isFinished returns true
-void moveCameraRight::End() {
+void TestReset::End() {
 
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void moveCameraRight::Interrupted() {
+void TestReset::Interrupted() {
 
 }

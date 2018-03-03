@@ -9,7 +9,7 @@ heightPid(new WVPIDController(1, 0, 0, height, false))
 
 // Called just before this Command runs the first time
 void MoveLiftToHeight::Initialize() {
-	std::cout << "LIFFFFFFFFFTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT: " << std::endl;
+
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -22,7 +22,12 @@ void MoveLiftToHeight::Execute()
 
 // Make this return true when this Command no longer needs to run execute()
 bool MoveLiftToHeight::IsFinished() {
-	return fabs(lift->getHeight() - targetHeight) < 0.05;
+	if(lift->getMotor()->GetSensorCollection().IsFwdLimitSwitchClosed())
+	{
+		return true;
+	}
+	else
+		return fabs(lift->getHeight() - targetHeight) < 0.05;
 	//return fabs(heightPid->GetError()) < 0.05;
 }
 

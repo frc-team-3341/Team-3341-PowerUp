@@ -5,14 +5,19 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include <Commands/LSwitch.h>
-#include "Auto_Left_RScale.h"
-#include "Auto_Left_LScale.h"
-#include "Auto_Left_Switch.h"
+#pragma once
 
-LSwitch::LSwitch(std::string s) {
-	if(s[0] == 'L')
-		AddSequential(new Auto_Left_Switch());
-	else
-		AddSequential(new DriveForward(To_Switch+Mid_Targets));
-}
+#include <Commands/Command.h>
+#include "../Subsystems/Catcher.h"
+#include "../CommandBase.h"
+
+class MoveCubeRight : public CommandBase {
+public:
+	MoveCubeRight();
+	void Initialize() override;
+	void Execute() override;
+	bool IsFinished() override;
+	void End() override;
+	void Interrupted() override;
+};
+

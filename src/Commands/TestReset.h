@@ -7,11 +7,17 @@
 
 #pragma once
 
-#include <Commands/CommandGroup.h>
-#include <iostream>
+#include <Commands/Command.h>
+#include "../CommandBase.h"
 
-class LSwitchScale : public frc::CommandGroup {
+
+class TestReset : public CommandBase {
 public:
-	LSwitchScale(std::string s);
+	TestReset();
+	void Initialize() override;
+	void Execute() override;
+	bool IsFinished() override;
+	void End() override;
+	void Interrupted() override;
 };
 

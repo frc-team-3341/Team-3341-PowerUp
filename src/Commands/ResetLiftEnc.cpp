@@ -5,37 +5,39 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "moveCameraRight.h"
+#include "ResetLiftEnc.h"
 
-moveCameraRight::moveCameraRight() {
+ResetLiftEnc::ResetLiftEnc(double timeout) :
+timer(0)
+{
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
-	Requires(camera);
+	Requires(lift);
+	timer = timeout;
 }
 
-
 // Called just before this Command runs the first time
-void moveCameraRight::Initialize() {
-
+void ResetLiftEnc::Initialize() {
+	SetTimeout(timer);
 }
 
 // Called repeatedly when this Command is scheduled to run
-void moveCameraRight::Execute() {
-camera->moveRight();
+void ResetLiftEnc::Execute() {
+	lift->resetEncoder();
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool moveCameraRight::IsFinished() {
-	return false;
+bool ResetLiftEnc::IsFinished() {
+	return IsTimedOut();
 }
 
 // Called once after isFinished returns true
-void moveCameraRight::End() {
+void ResetLiftEnc::End() {
 
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void moveCameraRight::Interrupted() {
+void ResetLiftEnc::Interrupted() {
 
 }

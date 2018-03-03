@@ -8,10 +8,11 @@
 #pragma once
 
 #include <Commands/CommandGroup.h>
-#include <iostream>
+#include "Commands/MoveCubeLeft.h"
+#include "Commands/ArmPositionPID.h"
 
-class RSwitchScale : public frc::CommandGroup {
+class TurnCubeLeft : public frc::CommandGroup {
 public:
-	RSwitchScale(std::string s);
+	TurnCubeLeft();
 };
 

@@ -5,14 +5,19 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "RScale.h"
-#include "Auto_Right_RScale.h"
-#include "Auto_Right_LScale.h"
-#include "Auto_Right_Switch.h"
+#pragma once
 
-RScale::RScale(std::string s) {
-	if(s[1] == 'R')
-		AddSequential(new Auto_Right_RScale());
-	else
-		AddSequential(new DriveForward(To_Switch+Mid_Targets));
-}
+#include <Commands/Command.h>
+#include "../Subsystems/Catcher.h"
+#include "../CommandBase.h"
+
+class MoveCubeLeft : public CommandBase {
+public:
+	MoveCubeLeft();
+	void Initialize() override;
+	void Execute() override;
+	bool IsFinished() override;
+	void End() override;
+	void Interrupted() override;
+};
+

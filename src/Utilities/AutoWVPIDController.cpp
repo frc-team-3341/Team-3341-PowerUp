@@ -1,4 +1,4 @@
-#include "AutoWVPIDController.h"
+#include <Utilities/AutoWVPIDController.h>
 
 AutoWVPIDController::AutoWVPIDController(double Kp, double Ki, double Kd,
 		double setPoint, bool integralThreshold) :

@@ -4,13 +4,20 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-#pragma once
 
-#include <Commands/CommandGroup.h>
-#include <iostream>
+#include "RightSwitch.h"
+#include "Auto_Right_RScale.h"
+#include "Auto_Right_LScale.h"
+#include "Auto_Right_Switch.h"
 
-class RScale : public frc::CommandGroup {
-public:
-	RScale(std::string s);
-};
-
+RightSwitch::RightSwitch(std::string s) {
+	if(s[0] == 'L'){
+			if(s[1] == 'L')
+				AddSequential(new Auto_Right_LScale());
+			else
+				AddSequential(new Auto_Right_RScale());
+		}
+		else {
+			AddSequential(new Auto_Right_Switch());
+		}
+}

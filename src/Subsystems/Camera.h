@@ -23,6 +23,5 @@ public:
 	void InitDefaultCommand() override;
 	void moveLeft();
 	void moveRight();
-	double getServoPosition();
 };
 

@@ -8,11 +8,11 @@
 #pragma once
 
 #include <Commands/CommandGroup.h>
-#include <iostream>
+#include "Commands/MoveLiftToMinHeight.h"
+#include "Commands/ResetLiftEnc.h"
 
-
-class LScaleSwitch : public frc::CommandGroup {
+class TestLiftGroup : public frc::CommandGroup {
 public:
-	LScaleSwitch(std::string s);
+	TestLiftGroup();
 };
 

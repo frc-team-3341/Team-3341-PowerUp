@@ -8,7 +8,6 @@
 
 #include "WPILib.h"
 
-#include "Timer.h"
 
 
 //#include ""
@@ -19,7 +18,7 @@ class Delay: public CommandBase {
 
 public:
 
-	Delay(double timeout);
+	Delay(float timeout);
 
 	void Initialize();
 
@@ -31,7 +30,7 @@ public:
 
 private:
 
-	double timer;
+	float timer;
 
 };
 

@@ -4,12 +4,13 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
+
 #pragma once
 
 #include <Commands/CommandGroup.h>
-#include <iostream>
 
-class LScale : public frc::CommandGroup {
+class Test : public frc::CommandGroup {
 public:
-	LScale(std::string s);
+	Test();
 };
+

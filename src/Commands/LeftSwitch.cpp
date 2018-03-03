@@ -5,18 +5,19 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include <Commands/LSwitchScale.h>
+#include "LeftSwitch.h"
 #include "Auto_Left_RScale.h"
 #include "Auto_Left_LScale.h"
 #include "Auto_Left_Switch.h"
 
-LSwitchScale::LSwitchScale(std::string s) {
-		if(s[0] == 'L')
-			AddSequential(new Auto_Left_Switch());
-		else if(s[1] == 'L'){
-			AddSequential(new Auto_Left_LScale());
-		}
+LeftSwitch::LeftSwitch(std::string s) {
+	if(s[0] == 'R'){
+		if(s[1] == 'R')
+			AddSequential(new Auto_Left_RScale());
 		else
-			AddSequential(new DriveForward(To_Switch+Mid_Targets));
-
+			AddSequential(new Auto_Left_LScale());
+	}
+	else {
+		AddSequential(new Auto_Left_Switch());
+	}
 }

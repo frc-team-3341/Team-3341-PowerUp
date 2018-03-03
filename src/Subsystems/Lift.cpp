@@ -58,6 +58,7 @@ double Lift::getHeight()
 void Lift::resetEncoder()
 {
 	motor->SetSelectedSensorPosition(0,0,10);
+	//motor->GetSensorCollection().SetQuadraturePosition(0,10);
 }
 
 void Lift::RobotSetClosedPositionLoop(TalonSRX* talon) {

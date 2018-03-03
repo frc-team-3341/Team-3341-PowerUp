@@ -5,37 +5,37 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "moveCameraRight.h"
+#include "MoveCubeRight.h"
 
-moveCameraRight::moveCameraRight() {
+MoveCubeRight::MoveCubeRight() {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
-	Requires(camera);
+	Requires(catcher);
 }
 
-
 // Called just before this Command runs the first time
-void moveCameraRight::Initialize() {
-
+void MoveCubeRight::Initialize() {
+	catcher->moveLeft(0, catcher->Direction::out);
+	catcher->moveRight(0.5, catcher->Direction::in);
 }
 
 // Called repeatedly when this Command is scheduled to run
-void moveCameraRight::Execute() {
-camera->moveRight();
+void MoveCubeRight::Execute() {
+
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool moveCameraRight::IsFinished() {
+bool MoveCubeRight::IsFinished() {
 	return false;
 }
 
 // Called once after isFinished returns true
-void moveCameraRight::End() {
+void MoveCubeRight::End() {
 
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void moveCameraRight::Interrupted() {
+void MoveCubeRight::Interrupted() {
 
 }

@@ -31,9 +31,6 @@ bool MoveLiftToMinHeight::IsFinished() {
 // Called once after isFinished returns true
 void MoveLiftToMinHeight::End() {
 	std::cout << "move lift to min height end -----------------" << std::endl;
-	lift->resetEncoder();
-	lift->move(0);
-	lift->setHeight(0);
 }
 
 // Called when another command which requires one or more of the same

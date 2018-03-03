@@ -5,14 +5,12 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include <Commands/RSwitch.h>
-#include "Auto_Right_RScale.h"
-#include "Auto_Right_LScale.h"
-#include "Auto_Right_Switch.h"
+#pragma once
 
-RSwitch::RSwitch(std::string s) {
-	if(s[0] == 'R')
-		AddSequential(new Auto_Right_Switch());
-	else
-		AddSequential(new DriveForward(To_Switch+Mid_Targets));
-}
+#include <Commands/CommandGroup.h>
+
+class LeftSwitch : public frc::CommandGroup {
+public:
+	LeftSwitch(std::string s);
+};
+

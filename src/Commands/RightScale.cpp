@@ -5,17 +5,14 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include <Commands/RSwitchScale.h>
+#include "RightScale.h"
 #include "Auto_Right_RScale.h"
 #include "Auto_Right_LScale.h"
 #include "Auto_Right_Switch.h"
 
-RSwitchScale::RSwitchScale(std::string s) {
-	if(s[0] == 'R')
-		AddSequential(new Auto_Right_Switch());
-	else if(s[1] == 'R'){
-		AddSequential(new Auto_Right_RScale());
-	}
-	else
-		AddSequential(new DriveForward(To_Switch+Mid_Targets));
+RightScale::RightScale(std::string s) {
+		if(s[1] == 'R')
+			AddSequential(new Auto_Right_RScale());
+		else
+			AddSequential(new Auto_Right_LScale());
 }

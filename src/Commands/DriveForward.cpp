@@ -1,11 +1,10 @@
 #include "DriveForward.h"
-#include <iostream>
-#include <cmath>
+#include "iostream"
 using namespace std;
 
 DriveForward::DriveForward(double _setpoint) : setpoint(_setpoint),
 		distancePid(new AutoWVPIDController(distKp, disKi, distKd, setpoint, false)),
-		anglePid(new AutoWVPIDController(angleKp, angleKi, angleKd, 0, false)) {
+				anglePid(new AutoWVPIDController(angleKp, angleKi, angleKd, 0, false)) {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
 	Requires(drive);
@@ -15,30 +14,21 @@ DriveForward::DriveForward(double _setpoint) : setpoint(_setpoint),
 
 // Called just before this Command runs the first time
 void DriveForward::Initialize() {
-	int i = 0;
-	//startDistPidValue = (distancePid->Tick(average))*2.5;
-	//std::cout << "Autonomous Initialize" << std::endl;
-	/**while(fabs(drive->leftDistance()) >=5 || fabs(drive->rightDistance()) >= 5){
-		drive->resetEncoders();
-		cout << "SARTHAKLKSJDGJSDKGKLSDJGKL:          " << ++i << endl;
-		cout<<"Left: "<<drive->leftDistance()<<" Right:  "<<drive->rightDistance()<<endl;
-	}*/
+	std::cout << "Autonomous Initialize" << std::endl;
+	drive->resetEncoders();
 	std::cout << "Encoder Reset" << std::endl;
 	drive->gyroReset();
-	//std::cout << "Gyro Reset" << std::endl;
+	std::cout << "Gyro Reset" << std::endl;
 	angle = drive->getAngle();
-	//std::cout << "Reset works " << std::endl;
+	std::cout << "Drive Angle " << std::endl;
+
 	//drive->setStartAbsTicks();
 }
 
 // Called repeatedly when this Command is scheduled to run
 void DriveForward::Execute() {
-	cout<<"Left: "<<drive->leftDistance()<<" Right:  "<<drive->rightDistance()<<endl;
-
-	average = fabs((drive->leftDistance() + drive->rightDistance()) / 2); //change
-	double distPidValue = (distancePid->Tick(average))*2.5;
-
-	//double distPidValue = 2*(((distancePid->Tick(average))/(2-distancePid->Tick(average)))*2.5;
+	average = fabs((drive->leftDistance() + drive->rightDistance()) / 2);
+	double distPidValue = distancePid->Tick(average)/1.66;
 
 	//angle = drive->getAngle();
 	cout << "Angle: " << angle << endl;
@@ -72,21 +62,15 @@ void DriveForward::Execute() {
 		isRight = true;
 		isLeft = false;
 	}
-	//isRight = false;
-	//isLeft = true;
-	cout<<"isRight: "<<isRight<<" isLeft: "<< isLeft<<endl;
-	cout<<"distPid: "<<distPidValue<<endl;
-	if(isRight){ //isLeft
-		//drive->tankDrive(0.2+ distPidValue, 0.2+ distPidValue);
-		drive->tankDrive(0.15+ distPidValue + error/10 , 0.15 + fabs(distPidValue) - fabs(error)/10);
-		std::cout << "Left power More: " << 0.15+ distPidValue + error/10 << std::endl;
-		std::cout << "Right power More: " << 0.15 + fabs(distPidValue)- fabs(error)/10 << std::endl;
+	if(isLeft){
+		drive->tankDrive(0.15+ distPidValue + error/10 , 0.15 + distPidValue - error/10);
+		std::cout << "Left power More: " << 0.15+ distPidValue + error/15 << std::endl;
+		std::cout << "Right power More: " << 0.15 + distPidValue - error/15 << std::endl;
 	}
-	else if(isLeft){ //isRight
-		//drive->tankDrive(0.2+ distPidValue, 0.2+ distPidValue);
+	else if(isRight){
 		drive->tankDrive(0.15+ distPidValue - error/10 , 0.15+ distPidValue + error/10);
-		std::cout << "Left power Less: " << 0.15+ distPidValue - error/10 << std::endl;
-		std::cout << "Right power Less: " << 0.15+ distPidValue + error/10 << std::endl;
+		std::cout << "Left power Less: " << 0.15+ distPidValue - error/15 << std::endl;
+		std::cout << "Right power Less: " << 0.15+ distPidValue + error/15 << std::endl;
 	}
 	else {
 		drive->tankDrive(0.2+ distPidValue, 0.2+ distPidValue);
@@ -104,7 +88,7 @@ bool DriveForward::IsFinished() {
 // Called once after isFinished returns true
 void DriveForward::End() {
 	std::cout << "error is finished and REACHED END " << fabs(average - setpoint) << std::endl;
-	drive->arcadeDrive(0, 0, 0.2);
+	drive->arcadeDrive(0, 0);
 }
 
 // Called when another command which requires one or more of the same

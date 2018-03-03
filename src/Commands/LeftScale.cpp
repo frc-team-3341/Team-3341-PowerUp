@@ -5,15 +5,15 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "Mid.h"
-#include "Auto_Mid_LSwitch.h"
-#include "Auto_Mid_RSwitch.h"
-#include <iostream>
+#include "LeftScale.h"
+#include "RightScale.h"
+#include "Auto_Left_RScale.h"
+#include "Auto_Left_LScale.h"
+#include "Auto_Right_Switch.h"
 
-Mid::Mid(std::string s) {
-	if(s[0] == 'L'){
-		AddSequential(new Auto_Mid_LSwitch());
-	}
+LeftScale::LeftScale(std::string s) {
+	if(s[1] == 'L')
+		AddSequential(new Auto_Left_LScale());
 	else
-		AddSequential(new Auto_Mid_RSwitch());
+		AddSequential(new Auto_Left_RScale());
 }

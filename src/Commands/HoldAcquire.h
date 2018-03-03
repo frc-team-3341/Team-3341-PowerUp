@@ -5,14 +5,16 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include <Commands/LScale.h>
-#include "Auto_Left_RScale.h"
-#include "Auto_Left_LScale.h"
-#include "Auto_Left_Switch.h"
+#pragma once
 
-LScale::LScale(std::string s) {
-	if(s[0] == 'L')
-		AddSequential(new Auto_Left_LScale());
-	else
-		AddSequential(new DriveForward(To_Switch+Mid_Targets));
-}
+#include <Commands/CommandGroup.h>
+#include "../CommandBase.h"
+#include "AcquireCrate.h"
+#include "ArmPositionPID.h"
+#include <WPILib.h>
+
+class HoldAcquire : public frc::CommandGroup {
+public:
+	HoldAcquire();
+};
+

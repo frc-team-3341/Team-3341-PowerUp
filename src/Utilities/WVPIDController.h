@@ -1,5 +1,5 @@
-#ifndef WVPIDCONTROLLER_H
-#define WVPIDCONTROLLER_H
+#ifndef PIDCONTROLLER_H
+#define PIDCONTROLLER_H
 
 class WVPIDController {
 public:
