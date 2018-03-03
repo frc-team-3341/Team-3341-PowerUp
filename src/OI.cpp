@@ -9,7 +9,6 @@
 #include "Commands/ArmPositionPID.h"
 #include "Commands/ArmSpeedPID.h"
 #include "Commands/ArmMin.h"
-#include "Commands/TestReset.h"
 #include "Commands/AutoArmMove.h"
 #include "Commands/moveCameraLeft.h"
 #include "Commands/moveCameraRight.h"
@@ -27,8 +26,8 @@ cameraRight(new JoystickButton(rightStick, 2))
 		shootCrate->WhenReleased(new StopCatcher());
 
 
-	//	cameraLeft->WhenPressed(new moveCameraLeft());
-		//cameraRight->WhenPressed(new moveCameraRight());
+		cameraLeft->WhenPressed(new moveCameraLeft());
+		cameraRight->WhenPressed(new moveCameraRight());
 
 		getCrate = new JoystickButton(armStick, 4);
 		getCrate->WhenPressed(new AcquireCrate());
@@ -53,6 +52,8 @@ cameraRight(new JoystickButton(rightStick, 2))
 	calibrateLift->WhenPressed(new MoveLiftToMinHeight());
 
 	armMax->ToggleWhenPressed(new AutoArmMove(50)); //degrees
+
+
 
 }
 

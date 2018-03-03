@@ -7,17 +7,11 @@
 
 #pragma once
 
-#include <Commands/Command.h>
-#include "../CommandBase.h"
+#include <Commands/CommandGroup.h>
+#include <iostream>
 
-
-class TestReset : public CommandBase {
+class RSwitch : public frc::CommandGroup {
 public:
-	TestReset();
-	void Initialize() override;
-	void Execute() override;
-	bool IsFinished() override;
-	void End() override;
-	void Interrupted() override;
+	RSwitch(std::string s);
 };
 

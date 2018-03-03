@@ -21,7 +21,8 @@ void moveCameraRight::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void moveCameraRight::Execute() {
-camera->moveRight();
+//camera->moveRight();
+std::cout << "Camera Position ----------" << camera->getServoPosition() << std::endl;
 }
 
 // Make this return true when this Command no longer needs to run execute()

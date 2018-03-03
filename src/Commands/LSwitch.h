@@ -7,22 +7,10 @@
 
 #pragma once
 
-#include <Commands/Subsystem.h>
-#include "ctre/Phoenix.h"
-#include <WPILib.h>
+#include <Commands/CommandGroup.h>
 
-class Camera : public frc::Subsystem {
-private:
-	// It's desirable that everything possible under private except
-	// for methods that implement subsystem capabilities
-	Servo* camera;
-
+class LSwitch : public frc::CommandGroup {
 public:
-	Camera();
-	~Camera();
-	void InitDefaultCommand() override;
-	void moveLeft();
-	void moveRight();
-	double getServoPosition();
+	LSwitch(std::string s);
 };
 

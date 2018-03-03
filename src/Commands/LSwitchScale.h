@@ -5,19 +5,13 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "RightSwitch.h"
-#include "Auto_Right_RScale.h"
-#include "Auto_Right_LScale.h"
-#include "Auto_Right_Switch.h"
+#pragma once
 
-RightSwitch::RightSwitch(std::string s) {
-	if(s[0] == 'L'){
-			if(s[1] == 'L')
-				AddSequential(new Auto_Right_LScale());
-			else
-				AddSequential(new Auto_Right_RScale());
-		}
-		else {
-			AddSequential(new Auto_Right_Switch());
-		}
-}
+#include <Commands/CommandGroup.h>
+#include <iostream>
+
+class LSwitchScale : public frc::CommandGroup {
+public:
+	LSwitchScale(std::string s);
+};
+

@@ -5,15 +5,14 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "LeftScale.h"
-#include "RightScale.h"
+#include <Commands/LScale.h>
 #include "Auto_Left_RScale.h"
 #include "Auto_Left_LScale.h"
-#include "Auto_Right_Switch.h"
+#include "Auto_Left_Switch.h"
 
-LeftScale::LeftScale(std::string s) {
-	if(s[1] == 'L')
+LScale::LScale(std::string s) {
+	if(s[0] == 'L')
 		AddSequential(new Auto_Left_LScale());
 	else
-		AddSequential(new Auto_Left_RScale());
+		AddSequential(new DriveForward(To_Switch+Mid_Targets));
 }

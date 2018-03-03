@@ -5,24 +5,18 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#pragma once
+#include <Commands/LSwitchScale.h>
+#include "Auto_Left_RScale.h"
+#include "Auto_Left_LScale.h"
+#include "Auto_Left_Switch.h"
 
-#include <Commands/Subsystem.h>
-#include "ctre/Phoenix.h"
-#include <WPILib.h>
+LSwitchScale::LSwitchScale(std::string s) {
+		if(s[0] == 'L')
+			AddSequential(new Auto_Left_Switch());
+		else if(s[1] == 'L'){
+			AddSequential(new Auto_Left_LScale());
+		}
+		else
+			AddSequential(new DriveForward(To_Switch+Mid_Targets));
 
-class Camera : public frc::Subsystem {
-private:
-	// It's desirable that everything possible under private except
-	// for methods that implement subsystem capabilities
-	Servo* camera;
-
-public:
-	Camera();
-	~Camera();
-	void InitDefaultCommand() override;
-	void moveLeft();
-	void moveRight();
-	double getServoPosition();
-};
-
+}

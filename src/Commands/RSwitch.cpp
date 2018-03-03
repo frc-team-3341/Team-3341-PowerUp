@@ -5,15 +5,14 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "TurnTest.h"
-#include "Turn2.h"
-#include "Delay.h"
-#include <iostream>
+#include <Commands/RSwitch.h>
+#include "Auto_Right_RScale.h"
+#include "Auto_Right_LScale.h"
+#include "Auto_Right_Switch.h"
 
-TurnTest::TurnTest() {
-	for(double i = .03; i<=1; i+=.01){
-		AddSequential(new Turn2(90,i));
-		AddSequential(new Delay(3));
-		std::cout<<i<<std::endl;
-	}
+RSwitch::RSwitch(std::string s) {
+	if(s[0] == 'R')
+		AddSequential(new Auto_Right_Switch());
+	else
+		AddSequential(new DriveForward(To_Switch+Mid_Targets));
 }

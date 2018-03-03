@@ -5,12 +5,14 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#pragma once
+#include <Commands/LSwitch.h>
+#include "Auto_Left_RScale.h"
+#include "Auto_Left_LScale.h"
+#include "Auto_Left_Switch.h"
 
-#include <Commands/CommandGroup.h>
-
-class LeftScale : public frc::CommandGroup {
-public:
-	LeftScale(std::string s);
-};
-
+LSwitch::LSwitch(std::string s) {
+	if(s[0] == 'L')
+		AddSequential(new Auto_Left_Switch());
+	else
+		AddSequential(new DriveForward(To_Switch+Mid_Targets));
+}

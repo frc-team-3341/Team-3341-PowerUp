@@ -5,12 +5,23 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#pragma once
-
+#include "Test_Mechs.h"
+#include "MoveLiftToMinHeight.h"
+#include "MoveLiftToHeight.h"
+#include "ArmPositionPID.h"
+#include "AutoArmMove.h"
+#include "ArmMin.h"
 #include <Commands/CommandGroup.h>
 
-class RightSwitch : public frc::CommandGroup {
-public:
-	RightSwitch(std::string s);
-};
+Test_Mechs::Test_Mechs() {
 
+	AddParallel(new ArmMin());
+	AddSequential(new MoveLiftToMinHeight());
+
+	AddParallel(new MoveLiftToHeight(18));
+	AddSequential(new AutoArmMove(100));
+	AddSequential(new MoveLiftToHeight(10));
+	AddSequential(new AutoArmMove(250));
+
+	AddSequential(new ArmPositionPID());
+}

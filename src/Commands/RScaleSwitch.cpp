@@ -5,24 +5,16 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#pragma once
+#include "RScaleSwitch.h"
+#include "Auto_Right_RScale.h"
+#include "Auto_Right_LScale.h"
+#include "Auto_Right_Switch.h"
 
-#include <Commands/Subsystem.h>
-#include "ctre/Phoenix.h"
-#include <WPILib.h>
-
-class Camera : public frc::Subsystem {
-private:
-	// It's desirable that everything possible under private except
-	// for methods that implement subsystem capabilities
-	Servo* camera;
-
-public:
-	Camera();
-	~Camera();
-	void InitDefaultCommand() override;
-	void moveLeft();
-	void moveRight();
-	double getServoPosition();
-};
-
+RScaleSwitch::RScaleSwitch(std::string s) {
+		if(s[1] == 'R')
+			AddSequential(new Auto_Right_RScale());
+		else if(s[0] == 'R')
+			AddSequential(new Auto_Right_Switch());
+		else
+			AddSequential(new DriveForward(To_Switch + Mid_Targets));
+}

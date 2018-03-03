@@ -11,9 +11,8 @@
 #include <iostream>
 
 Mid::Mid(std::string s) {
-	if(s[0] == 'L'){
+	if(s[0] == 'L')
 		AddSequential(new Auto_Mid_LSwitch());
-	}
 	else
 		AddSequential(new Auto_Mid_RSwitch());
 }

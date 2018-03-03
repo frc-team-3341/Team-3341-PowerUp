@@ -5,12 +5,14 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#pragma once
+#include "RScale.h"
+#include "Auto_Right_RScale.h"
+#include "Auto_Right_LScale.h"
+#include "Auto_Right_Switch.h"
 
-#include <Commands/CommandGroup.h>
-
-class TurnTest : public frc::CommandGroup {
-public:
-	TurnTest();
-};
-
+RScale::RScale(std::string s) {
+	if(s[1] == 'R')
+		AddSequential(new Auto_Right_RScale());
+	else
+		AddSequential(new DriveForward(To_Switch+Mid_Targets));
+}

@@ -8,9 +8,11 @@
 #pragma once
 
 #include <Commands/CommandGroup.h>
+#include <iostream>
 
-class Test : public frc::CommandGroup {
+
+class LScaleSwitch : public frc::CommandGroup {
 public:
-	Test();
+	LScaleSwitch(std::string s);
 };
 

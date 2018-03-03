@@ -8,9 +8,10 @@
 #pragma once
 
 #include <Commands/CommandGroup.h>
+#include <iostream>
 
-class RightScale : public frc::CommandGroup {
+class RScaleSwitch : public frc::CommandGroup {
 public:
-	RightScale(std::string s);
+	RScaleSwitch(std::string s);
 };
 

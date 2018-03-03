@@ -9,7 +9,7 @@ heightPid(new WVPIDController(1, 0, 0, height, false))
 
 // Called just before this Command runs the first time
 void MoveLiftToHeight::Initialize() {
-
+	std::cout << "LIFFFFFFFFFTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT: " << std::endl;
 }
 
 // Called repeatedly when this Command is scheduled to run

@@ -1,7 +1,7 @@
 #ifndef Turn_H
 #define Turn_H
 
-#include "../Utilities/AutoWVPIDController.h"
+#include <Utilities/AutoWVPIDController.h>
 #include "../CommandBase.h"
 
 class Turn : public CommandBase {
@@ -13,7 +13,6 @@ class Turn : public CommandBase {
 	void End();
 	void Interrupted();
 private:
-
 	double kP = 0.025;
 	double kI = 0;
 	double kD = 0.0;

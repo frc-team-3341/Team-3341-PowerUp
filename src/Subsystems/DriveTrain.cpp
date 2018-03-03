@@ -12,26 +12,25 @@ DriveTrain::DriveTrain() : Subsystem("DriveTrain"), left(new TalonSRX(LEFTMOTOR)
 	left->ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Relative,0,10);
 	// left->ConfigEncoderCodesPerRev(360);
 	left->SetSelectedSensorPosition(0,0,10);
+	left->Set(ControlMode::Position, 0);
+
 	right->ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Relative,0,10);
 	// right->ConfigEncoderCodesPerRev(360);
 	right->SetSelectedSensorPosition(0,0,10);
+	right->Set(ControlMode::Position, 0);
 
 	std::cout<<"DriveTrain Constructor Successful" <<std::endl;
-	right->SetInverted(true);
-
+	right->SetInverted(false);
+	left->SetInverted(true);
 	gyro->Calibrate();
-	gyro->Reset();
-
-
 
 }
 
 void DriveTrain::InitDefaultCommand() {
 	// Set the default command for a subsystem here.
 	// SetDefaultCommand(new MySpecialCommand());
-
-	SetDefaultCommand(new TankDrive());
 	std::cout<<"DriveTrain InitDefaultCommand Successful" <<std::endl;
+	SetDefaultCommand(new TankDrive());
 }
 
 
@@ -46,11 +45,12 @@ double DriveTrain::Limit(double num, double max) {
 }
 
 void DriveTrain::tankDrive(double leftVal, double rightVal) {
-	left->Set(ControlMode::PercentOutput, DriveTrain::Limit(-leftVal, 1.0));
-	right->Set(ControlMode::PercentOutput, DriveTrain::Limit(-rightVal, 1.0));
+	left->Set(ControlMode::PercentOutput, DriveTrain::Limit(leftVal, 1));
+	right->Set(ControlMode::PercentOutput, DriveTrain::Limit(rightVal, 1));
+	//cout << "left: " << leftVal << "  right: " << rightVal << endl;
 }
 
-void DriveTrain::arcadeDrive(double moveVal, double rotateVal) {
+void DriveTrain::arcadeDrive(double moveVal, double rotateVal, double limit) {
 	double leftMotorOutput, rightMotorOutput;
 
 /*
@@ -77,8 +77,8 @@ void DriveTrain::arcadeDrive(double moveVal, double rotateVal) {
 		}
 	}
 
-	left->Set(ControlMode::PercentOutput, DriveTrain::Limit(leftMotorOutput, 0.5));
-	right->Set(ControlMode::PercentOutput, DriveTrain::Limit(rightMotorOutput, 0.5));
+	left->Set(ControlMode::PercentOutput, DriveTrain::Limit(leftMotorOutput, limit));
+	right->Set(ControlMode::PercentOutput, DriveTrain::Limit(rightMotorOutput, limit));
 }
 
 double DriveTrain::getAngle() {
@@ -94,9 +94,8 @@ double DriveTrain::getAngle() {
 }
 
 void DriveTrain::gyroReset() {
-	gyro->Calibrate();
+	gyro->Reset();
 }
-
 void DriveTrain::gyroCalibrate(){
 	gyro->Calibrate();
 }
@@ -104,6 +103,10 @@ void DriveTrain::gyroCalibrate(){
 void DriveTrain::resetEncoders(){
 	left->SetSelectedSensorPosition(0,0,10);
 	right->SetSelectedSensorPosition(0,0,10);
+	left->Set(ControlMode::Position, 0);
+	right->Set(ControlMode::Position, 0);
+	cout << left->HasResetOccurred() << endl;
+	cout<<"reset enc"<<endl;
 }
 
 /* DriveTrain::setStartAbsTicks(){
@@ -113,12 +116,12 @@ void DriveTrain::resetEncoders(){
 
 double DriveTrain::leftDistance() { //inches
 
-	double test = left->GetSensorCollection().GetPulseWidthPosition();
+	//double test = left->GetSensorCollection().GetPulseWidthPosition();
 	double relativePosition = left->GetSensorCollection().GetQuadraturePosition(); // Return ticks
 
 	relativePosition = ((relativePosition) / 4096) * circumference; // 4096 ticks per revolution
 	//cout << "Abs: " << test << endl;
-	test = ((test)/ 4096) * circumference;
+	//test = ((test)/ 4096) * circumference;
 
 	//cout << "Start: " << startAbsTicks << endl;
 	//cout<< "Relative Position: " << relativePosition <<std::endl;
