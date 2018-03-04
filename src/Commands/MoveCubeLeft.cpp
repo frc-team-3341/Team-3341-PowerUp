@@ -15,7 +15,7 @@ MoveCubeLeft::MoveCubeLeft() {
 
 // Called just before this Command runs the first time
 void MoveCubeLeft::Initialize() {
-	catcher->moveLeft(0.5, catcher->Direction::in);
+	catcher->moveLeft(0.75, catcher->Direction::in);
 	catcher->moveRight(0, catcher->Direction::out);
 }
 

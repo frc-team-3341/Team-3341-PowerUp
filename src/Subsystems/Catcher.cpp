@@ -31,18 +31,18 @@ void Catcher::Disable()
 	enabled = false;
 }
 
-void Catcher::CrateOut()
+void Catcher::CrateIn()
 {
 	if (enabled)
 		catcherLeft->Set(ControlMode::PercentOutput, -1);
 		catcherRight->Set(ControlMode::PercentOutput, 1);
 }
 
-void Catcher::CrateIn()
+void Catcher::CrateOut()
 {
     if(enabled)
-    	catcherLeft->Set(ControlMode::PercentOutput, 1);
-    	catcherRight->Set(ControlMode::PercentOutput, -1);
+    	catcherLeft->Set(ControlMode::PercentOutput, 0.75);
+    	catcherRight->Set(ControlMode::PercentOutput, -0.75);
 }
 
 void Catcher::Stop()
@@ -98,12 +98,12 @@ void Catcher::moveRight(double speed, Direction catchDirection)
 
 double Catcher::getSpeedLeft()
 {
-	return 1.0;
+	return catcherLeft->GetSensorCollection().GetQuadratureVelocity();
 }
 
 double Catcher::getSpeedright()
 {
-	return 1.0;
+	return catcherRight->GetSensorCollection().GetQuadratureVelocity();
 }
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
