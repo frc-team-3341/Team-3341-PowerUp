@@ -41,8 +41,8 @@ void Catcher::CrateIn()
 void Catcher::CrateOut()
 {
     if(enabled)
-    	catcherLeft->Set(ControlMode::PercentOutput, 0.75);
-    	catcherRight->Set(ControlMode::PercentOutput, -0.75);
+    	catcherLeft->Set(ControlMode::PercentOutput, 0.4);
+    	catcherRight->Set(ControlMode::PercentOutput, -0.4);
 }
 
 void Catcher::Stop()

@@ -14,12 +14,12 @@ private:
 	Button* getCrate;
 	Button* getCrateRight;
 	Button* getCrateLeft;
-	Button* armMax;
-	Button* armMin;
+	//Button* armMax;
+	//Button* armMin;
 
 	//Lift buttons
-	Button* exchangeHeight;
-	Button* testFullHeight;
+	//Button* exchangeHeight;
+	//Button* testFullHeight;
 
 	//Camera buttons
 	Button* cameraLeft;
