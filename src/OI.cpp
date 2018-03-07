@@ -56,24 +56,24 @@ void OI::ArmButtonsInit()
 	getCrateRight->WhenPressed(new TurnCubeRight());
 	getCrateRight->WhenReleased(new StopCatcher());
 
-	//armMax = new JoystickButton(armStick, 7);
-	//armMax->ToggleWhenPressed(new AutoArmMove(50)); //degrees
+	armMax = new JoystickButton(armStick, 7);
+	armMax->ToggleWhenPressed(new AutoArmMove(50)); //degrees
 	//armMax->WhenPressed(new ArmMax());
 	//armMin->WhenPressed(new ArmMin());
 	//armMax->WhenPressed(new TestReset());
 
-	//armMin = new JoystickButton(armStick, 9);
-	//armMin->ToggleWhenPressed(new ArmMin());
+	armMin = new JoystickButton(armStick, 9);
+	armMin->ToggleWhenPressed(new ArmMin());
 	//armMin->WhenReleased(new ArmSpeedPID());
 }
 
 void OI::LiftButtonsInit()
 {
-	//exchangeHeight = new JoystickButton(liftStick,5);
-	//exchangeHeight->WhenPressed(new MoveLiftToHeight(22));
+	exchangeHeight = new JoystickButton(liftStick,5);
+	exchangeHeight->WhenPressed(new MoveLiftToHeight(22));
 
-	//testFullHeight = new JoystickButton(liftStick,3);
-	//testFullHeight->WhenPressed(new MoveLiftToHeight(40));
+	testFullHeight = new JoystickButton(liftStick,3);
+	testFullHeight->WhenPressed(new MoveLiftToHeight(40));
 }
 
 Joystick* OI::getLeftStick()
@@ -94,5 +94,3 @@ Joystick* OI::getLiftStick()
 {
 	return liftStick;
 }
-
-

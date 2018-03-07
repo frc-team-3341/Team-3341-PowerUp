@@ -11,19 +11,19 @@ ReleaseCrate::ReleaseCrate()
 // Called just before this Command runs the first time
 void ReleaseCrate::Initialize()
 {
-	catcher->Enable();
+	catcher->moveLeft(0.4, catcher->Direction::in);
+	catcher->moveRight(0.4, catcher->Direction::in);
 }
 
 // Called repeatedly when this Command is scheduled to run
 void ReleaseCrate::Execute()
 {
-	catcher->CrateOut();
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool ReleaseCrate::IsFinished()
 {
-	return !catcher->IsEnabled();
+	return false;
 }
 
 // Called once after isFinished returns true

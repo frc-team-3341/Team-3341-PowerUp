@@ -1,4 +1,4 @@
-#include <Utilities/AutoWVPIDController.h>
+#include "AutoWVPIDController.h"
 
 AutoWVPIDController::AutoWVPIDController(double Kp, double Ki, double Kd,
 		double setPoint, bool integralThreshold) :
@@ -16,6 +16,7 @@ AutoWVPIDController::AutoWVPIDController(double Kp, double Ki, double Kd,
 
 double AutoWVPIDController::Tick(double measuredValue) {
 	error = setPoint - measuredValue;
+	//error = measuredValue;
 	if (integralThreshold) {
 		if (error <= .1)
 			integral += error;

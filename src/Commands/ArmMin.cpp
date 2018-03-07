@@ -11,12 +11,14 @@ ArmMin::ArmMin() //: anglePID(new WVPIDController(1, 0, 0, arm->getMin(), false)
 void ArmMin::Initialize() {
 	//arm->meta(true);
 	arm->InitializeCounter();
+	//i = 0;
 }
 
 // Called repeatedly when this Command is scheduled to run
 void ArmMin::Execute() {
 	//double measuredPower = anglePID->Tick(arm->getPosition());
 	arm->move(.3);
+	//i++;
 	//temp = arm->getPosition();
 
 	//Wait(2);
@@ -25,7 +27,8 @@ void ArmMin::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool ArmMin::IsFinished() {
-	if(arm->getArmMotor()->GetSensorCollection().IsFwdLimitSwitchClosed())
+
+	if(arm->getArmMotor()->GetSensorCollection().IsFwdLimitSwitchClosed() ||  arm->getPosition()<30)
 	{
 		return true;
 	}

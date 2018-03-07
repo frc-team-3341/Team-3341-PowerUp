@@ -24,13 +24,19 @@ void Camera::InitDefaultCommand() {
 
 void Camera::moveLeft()
 {
-	camera->SetSpeed(-0.5);
+	//camera->SetAngle(0);
+	camera->SetSpeed(0.5);
 }
 
 void Camera::moveRight()
 {
-	camera->SetSpeed(0.5);
+	//camera->SetAngle(180);
+	camera->SetSpeed(-0.5);
 }
 
+double Camera::getServoPosition()
+{
+	return camera->Get();
+}
 // Put methods for controlling this subsystem
 // here. Call these from Commands.

@@ -9,7 +9,7 @@
 
 
 AutoArmMove::AutoArmMove(double target) :
-anglePID(new WVPIDController(0.01, 0, 0, target, false)) {
+anglePID(new WVPIDController(0.02, 0, 0, target, false)) {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
 	Requires(CommandBase::arm);
@@ -18,23 +18,32 @@ anglePID(new WVPIDController(0.01, 0, 0, target, false)) {
 // Called just before this Command runs the first time
 void AutoArmMove::Initialize()
 {
-
+	std::cout << "ARRRRRRRRRRRRRRRRRRRRRMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM: " << std::endl;
+	iterator = 0;
+	lastval = 1000;
 }
 
 // Called repeatedly when this Command is scheduled to run
 void AutoArmMove::Execute()
 {
-	double measuredVal = arm->getPosition();
+	measuredVal = arm->getPosition();
+	std::cout << "ARM VALUE: " << measuredVal << std::endl;
 	double adjPower = anglePID->Tick(measuredVal);
 	arm->move(-adjPower);
 	std::cout << "measured encoder value: " << measuredVal << std::endl;
+	iterator++;
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool AutoArmMove::IsFinished() {
+	if(iterator%50 == 0){
+				if(fabs(lastval - measuredVal) <0.05){
+					return true;
+				}
+				lastval = measuredVal;
+			}
 
-	if(anglePID->GetError() < 2 ||
-			arm->getArmMotor()->GetSensorCollection().IsRevLimitSwitchClosed())
+	if(fabs(anglePID->GetError()) < 2 || arm->getArmMotor()->GetSensorCollection().IsRevLimitSwitchClosed())
 		return true;
 	else
 		return false;

@@ -2,13 +2,16 @@
 
 MoveLiftToHeight::MoveLiftToHeight(double height) :
 targetHeight(height),
-heightPid(new WVPIDController(1, 0, 0, height, false))
+heightPid(new WVPIDController(1.2, 0, 0, height, false))
 {
 	Requires(lift);
 }
 
 // Called just before this Command runs the first time
 void MoveLiftToHeight::Initialize() {
+	std::cout << "LIFFFFFFFFFTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT: " << std::endl;
+	iterator = 0;
+	lastval = 1000;
 
 }
 
@@ -18,16 +21,19 @@ void MoveLiftToHeight::Execute()
 	double power = heightPid->Tick(lift->getHeight());
 	std::cout << "power: " << power << std::endl;
 	lift->move(lift->Limit(power, 0.6));
+	height = lift->getHeight();
+	iterator++;
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool MoveLiftToHeight::IsFinished() {
-	if(lift->getMotor()->GetSensorCollection().IsFwdLimitSwitchClosed())
-	{
-		return true;
-	}
-	else
-		return fabs(lift->getHeight() - targetHeight) < 0.05;
+	if(iterator%50 == 0){
+				if(fabs(lastval - height) <0.05){
+					return true;
+				}
+				lastval = height;
+			}
+	return fabs(lift->getHeight() - targetHeight) < 0.6;
 	//return fabs(heightPid->GetError()) < 0.05;
 }
 

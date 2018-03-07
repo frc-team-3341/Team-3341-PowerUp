@@ -15,6 +15,9 @@ class AutoArmMove : public CommandBase {
 
 private:
 	WVPIDController* anglePID;
+	int iterator;
+	double lastval;
+	double measuredVal;
 
 public:
 	AutoArmMove(double target);

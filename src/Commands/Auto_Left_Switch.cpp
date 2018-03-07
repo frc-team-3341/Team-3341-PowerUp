@@ -2,16 +2,28 @@
 #include <iostream>
 #include "Delay.h"
 #include "../CommandBase.h"
-//#include "Constants.h"
+#include "Test_Mechs.h"
+#include "ArmMin.h"
+#include "MoveLiftToMinHeight.h"
+#include "ArmPositionPID.h"
+
+#include "ReleaseCrate.h"//#include "Constants.h"
 
 Auto_Left_Switch::Auto_Left_Switch() {
-	AddSequential(new DriveForward(To_Switch));
-	std::cout<<"PLEASE"<<std::endl;
-	AddSequential(new Delay(5));
-	AddSequential(new Turn(90));
-	std::cout<<"NEXT_PLEASE"<<std::endl;
-	AddSequential(new Delay(5));
+
+	AddParallel(new ArmMin());
+	AddSequential(new MoveLiftToMinHeight());
+	AddSequential(new Delay(.5));
+	AddSequential(new DriveForward(To_Switch-25));
+	AddSequential(new Delay(.5));
+	AddSequential(new Turn(85));
+	AddParallel(new Test_Mechs());
+	AddSequential(new Delay(.5));
 	AddSequential(new DriveForward(Forward_Switch));
-	//AddSequential(new Arm(90,.5));
-	//AddSequential(new Conveyor(45,2));
+	AddParallel(new ReleaseCrate());
+	AddSequential(new ArmPositionPID());
+
+
+
+
 }

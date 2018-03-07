@@ -20,7 +20,7 @@ public:
 	DriveTrain();
 	void InitDefaultCommand();
 	void tankDrive(double leftVal, double rightVal);
-	void arcadeDrive(double moveVal, double rotateVal);
+	void arcadeDrive(double moveVal, double rotateVal, double limit);
 	double Limit(double num, double max);
 	double getAngle();
 	double getSpeed();

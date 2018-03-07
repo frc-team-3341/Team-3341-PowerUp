@@ -1,7 +1,7 @@
 #ifndef DriveForward_H
 #define DriveForward_H
 
-#include "../Utilities/AutoWVPIDController.h"
+#include <Utilities/AutoWVPIDController.h>
 #include "../CommandBase.h"
 
 class DriveForward : public CommandBase {
@@ -15,10 +15,13 @@ private:
 	double setpoint;
 	double average = 0;
 	double angle = 0;
-	double iterator = 0.0;
+	int iterator = 0;
 	double MULT = 1.2;
 	bool isLeft = false;
 	bool isRight = false;
+	double startDistPidValue;
+	double lastval = 1000.0;
+	double bound;
 
 	AutoWVPIDController* distancePid;
 	AutoWVPIDController* anglePid;

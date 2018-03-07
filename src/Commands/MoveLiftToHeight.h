@@ -8,6 +8,9 @@ class MoveLiftToHeight : public CommandBase {
 private:
 	double targetHeight;
 	WVPIDController* heightPid;
+	int iterator;
+	double lastval;
+	double height;
 
 public:
 	MoveLiftToHeight(double height);
